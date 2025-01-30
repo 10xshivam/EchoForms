@@ -4,7 +4,13 @@
 
 body {
   background: radial-gradient(circle at center, #140B29, #010306);
-  color:white
+}
+
+.light body {
+  /* background: radial-gradient(circle at center, #F5F7FF, #E3E6F0); */
+  /* background: radial-gradient(circle at center, #E3EEFF, #CBD5E1); */
+  background: radial-gradient(circle at center, #F7F9FC, #DCE3F5);
+
 }
 
 @layer base {
