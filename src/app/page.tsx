@@ -8,7 +8,46 @@ import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern
 import { Label } from "@/components/ui/label";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ChartColumn,
+  Share2,
+  Sparkles,
+  SquarePen,
+  Zap,
+} from "lucide-react";
+
+const howItWorks = [
+  {
+    step: 1,
+    title: "Describe Your Form",
+    description:
+      "Simply type what kind of form you need—whether it's a survey, registration form, or feedback form. EchoForms understands your needs instantly.",
+    icon: <SquarePen />,
+  },
+  {
+    step: 2,
+    title: "AI Generates It",
+    description:
+      "Our powerful AI builds a fully functional form in seconds, structured exactly as you described—no coding, no drag-and-drop required.",
+    icon: <Zap />,
+  },
+  {
+    step: 3,
+    title: "Share & Embed",
+    description:
+      "Get a shareable link or embed it anywhere—your website, Notion, or any platform. Start collecting responses instantly.",
+    icon: <Share2 />,
+  },
+  {
+    step: 4,
+    title: "Analyze Responses",
+    description:
+      "View and manage responses in real time with our intuitive dashboard. Export data or integrate with Notion, Zapier, and Google Sheets.",
+    icon: <ChartColumn />,
+  },
+];
 
 export default function Home() {
   return (
@@ -54,82 +93,116 @@ export default function Home() {
           </HoverBorderGradient>
         </div>
       </div>
-      <div className="w-full pt-52 pb-20 flex justify-center items-center px-52">
-        <div className="size-full max-w-xl items-center justify-center  pt-8">
-          <BoxReveal duration={0.5}>
-            <h2 className="text-[3.5rem] font-semibold tracking-tighter text-white/80 mb-5">
-              Why EchoForms <span className="text-zinc-600">?</span>
-            </h2>
-          </BoxReveal>
-          <BoxReveal duration={0.5}>
-            <h2 className="mt-[.5rem] text-2xl">
-              The Future of{" "}
-              <span className="text-zinc-500 font-medium">
-                AI-Powered Form Building
-              </span>
-            </h2>
-          </BoxReveal>
-          <BoxReveal duration={0.5}>
-            <div className="mt-6">
-              <p className="text-lg">
-                -&gt; Generate forms instantly using
-                <span className="font-semibold text-zinc-500"> AI prompts</span>
-                . <br />
-                -&gt; No coding, no drag-and-drop—just describe and create.{" "}
-                <br />
-                -&gt; 100% customizable and embeddable in any platform. <br />
-              </p>
-            </div>
-          </BoxReveal>
-          <BoxReveal duration={0.5}>
-            <Button className="mt-[1.6rem] bg-zinc-800 text-white h-11 hover:bg-zinc-900">
-              Check Demo
-            </Button>
-          </BoxReveal>
-        </div>
-        <div className="h-[40rem] w-full flex items-center justify-center p-5">
-          <PinContainer title="/echoforms.com">
-            <div className="flex basis-full flex-col p-2 tracking-tight text-slate-100/50 sm:basis-1/2 w-[22rem] items-center ">
-              <h3 className="font-bold text-xl text-white/90">Feedback Form</h3>
-              <h4 className="text-white/20 text-lg my-1 ">
-                We value your feedback
-              </h4>
-              <div className="w-full max-w-md">
-                <Label className="text-white/60">Name</Label>
-                <Input
-                  type="text"
-                  className="border-white/20 bg-zinc-950 mb-3"
-                  placeholder="Enter your name"
-                  disabled
-                />
-                <Label className="text-white/60">Email</Label>
-                <Input
-                  type="email"
-                  className="border-white/20 bg-zinc-950 mb-3"
-                  placeholder="Enter your email"
-                  disabled
-                />
-                <Label className="text-white/60">Feedback</Label>
-                <Textarea
-                  className="border-white/20 bg-zinc-950 mb-4"
-                  placeholder="Write your feedback here"
-                  disabled
-                />
-                <Button
-                  type="submit"
-                  className="w-full bg-blue-600 text-white hover:bg-blue-700"
-                >
-                  Submit
-                </Button>
+      <div className="w-full pt-80 pb-40 flex flex-col justify-center items-center gap-10">
+        <h2 className="text-[3.5rem] font-semibold tracking-tighter text-white/80 mb-5">
+          Why EchoForms <span className="text-zinc-600">?</span>
+        </h2>
+        <div className="flex gap-52">
+          <div className="size-full max-w-2xl  py-10">
+            <BoxReveal duration={0.5}>
+              <h2 className="mt-[.5rem] text-2xl">
+                The Future of{" "}
+                <span className="text-zinc-500 font-medium">
+                  AI-Powered Form Building
+                </span>
+              </h2>
+            </BoxReveal>
+            <BoxReveal duration={0.5}>
+              <div className="mt-6">
+                <p className="text-lg">
+                  -&gt; Generate forms instantly using
+                  <span className="font-semibold text-zinc-500">
+                    {" "}
+                    AI prompts
+                  </span>
+                  . <br />
+                  -&gt; No coding, no drag-and-drop—just describe and create.{" "}
+                  <br />
+                  -&gt; 100% customizable and embeddable in any platform. <br />
+                </p>
               </div>
-            </div>
-          </PinContainer>
+            </BoxReveal>
+            <BoxReveal duration={0.5}>
+              <Button className="mt-[1.6rem] bg-zinc-800 text-white h-11 hover:bg-zinc-900">
+                Check Demo
+              <ArrowRight className="ml-2" size={16} />
+              </Button>
+            </BoxReveal>
+          </div>
+          <div className="h-fit w-full flex items-center justify-center p-5">
+            <PinContainer title="/echoforms.com">
+              <div className="flex basis-full flex-col p-2 tracking-tight text-slate-100/50 sm:basis-1/2 w-[22rem] items-center ">
+                <h3 className="font-bold text-xl text-white/90">
+                  Feedback Form
+                </h3>
+                <h4 className="text-white/20 text-lg my-1 ">
+                  We value your feedback
+                </h4>
+                <div className="w-full max-w-md">
+                  <Label className="text-white/60">Name</Label>
+                  <Input
+                    type="text"
+                    className="border-white/20 bg-zinc-950 mb-3"
+                    placeholder="Enter your name"
+                    disabled
+                  />
+                  <Label className="text-white/60">Email</Label>
+                  <Input
+                    type="email"
+                    className="border-white/20 bg-zinc-950 mb-3"
+                    placeholder="Enter your email"
+                    disabled
+                  />
+                  <Label className="text-white/60">Feedback</Label>
+                  <Textarea
+                    className="border-white/20 bg-zinc-950 mb-4"
+                    placeholder="Write your feedback here"
+                    disabled
+                  />
+                  <Button
+                    type="submit"
+                    className="w-full bg-blue-600 text-white hover:bg-blue-700"
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </div>
+            </PinContainer>
+          </div>
         </div>
       </div>
-      <div>
-        <h2 className="text-[3.5rem] font-semibold tracking-tighter text-white/80 mb-5">
+      <div className="flex flex-col justify-center items-center gap-10 pb-20">
+        <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
           How it works <span className="text-zinc-600">?</span>
         </h2>
+        <div className="w-full flex flex-col items-center justify-center  gap-7 max-md:pt-10 max-md:px-7 max-md:gap-6">
+          {howItWorks.map((step) => (
+            <div
+              key={step.step}
+              className="group relative overflow-hidden rounded-2xl bg-zinc-900 p-6 transition-all hover:bg-zinc-800/80 max-md:p-5"
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="flex gap-6 max-md:flex-col max-md:gap-2">
+                <div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-500/10">
+                    {step.icon}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-zinc-400">
+                    Step {step.step}
+                  </div>
+                  <h3 className="mt-2 text-xl font-medium text-white max-md:text-[1.3rem]">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-base leading-relaxed text-zinc-400  max-w-3xl max-md:leading-5 max-md:text-[0.9rem]">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
