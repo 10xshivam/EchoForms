@@ -83,7 +83,7 @@ export default function Home() {
           </BoxReveal>
           <BoxReveal duration={0.5}>
             <Button className="mt-[1.6rem] bg-zinc-800 text-white h-11 hover:bg-zinc-900">
-              Try EchoForms
+              Check Demo 
             </Button>
           </BoxReveal>
         </div>
@@ -95,21 +95,21 @@ export default function Home() {
                 We value your feedback
               </h4>
               <div className="w-full max-w-md">
-                <Label className="text-white/60">Your Name</Label>
+                <Label className="text-white/60">Name</Label>
                 <Input
                   type="text"
                   className="border-white/20 bg-zinc-950 mb-3"
                   placeholder="Enter your name"
                   disabled
                 />
-                <Label className="text-white/60">Your Email</Label>
+                <Label className="text-white/60">Email</Label>
                 <Input
                   type="email"
                   className="border-white/20 bg-zinc-950 mb-3"
                   placeholder="Enter your email"
                   disabled
                 />
-                <Label className="text-white/60">Your Feedback</Label>
+                <Label className="text-white/60">Feedback</Label>
                 <Textarea
                   className="border-white/20 bg-zinc-950 mb-4"
                   placeholder="Write your feedback here"
