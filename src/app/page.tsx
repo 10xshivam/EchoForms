@@ -54,7 +54,7 @@ export default function Home() {
           </HoverBorderGradient>
         </div>
       </div>
-      <div className="w-full pt-52 pb-32 flex justify-center items-center px-52">
+      <div className="w-full pt-52 pb-20 flex justify-center items-center px-52">
         <div className="size-full max-w-xl items-center justify-center  pt-8">
           <BoxReveal duration={0.5}>
             <h2 className="text-[3.5rem] font-semibold tracking-tighter text-white/80 mb-5">
@@ -83,7 +83,7 @@ export default function Home() {
           </BoxReveal>
           <BoxReveal duration={0.5}>
             <Button className="mt-[1.6rem] bg-zinc-800 text-white h-11 hover:bg-zinc-900">
-              Check Demo 
+              Check Demo
             </Button>
           </BoxReveal>
         </div>
@@ -125,6 +125,11 @@ export default function Home() {
             </div>
           </PinContainer>
         </div>
+      </div>
+      <div>
+        <h2 className="text-[3.5rem] font-semibold tracking-tighter text-white/80 mb-5">
+          How it works <span className="text-zinc-600">?</span>
+        </h2>
       </div>
     </div>
   );
