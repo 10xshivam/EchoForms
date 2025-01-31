@@ -88,13 +88,13 @@ export default function Home() {
           </BoxReveal>
         </div>
         <div className="h-[40rem] w-full flex items-center justify-center p-5">
-          <PinContainer title="/ui.aceternity.com">
+          <PinContainer title="/echoforms.com">
             <div className="flex basis-full flex-col p-2 tracking-tight text-slate-100/50 sm:basis-1/2 w-[22rem] items-center ">
               <h3 className="font-bold text-xl text-white/90">Feedback Form</h3>
               <h4 className="text-white/20 text-lg my-1 ">
                 We value your feedback
               </h4>
-              <form className="w-full max-w-md">
+              <div className="w-full max-w-md">
                 <Label className="text-white/60">Your Name</Label>
                 <Input
                   type="text"
@@ -121,7 +121,7 @@ export default function Home() {
                 >
                   Submit
                 </Button>
-              </form>
+              </div>
             </div>
           </PinContainer>
         </div>
