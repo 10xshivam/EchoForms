@@ -56,7 +56,7 @@ export default function Home() {
       </div>
       <div className="w-full pt-52 pb-32 flex justify-center items-center px-52">
         <div className="size-full max-w-xl items-center justify-center  pt-8">
-          <BoxReveal  duration={0.5}>
+          <BoxReveal duration={0.5}>
             <h2 className="text-[3.5rem] font-semibold tracking-tighter text-white/80 mb-5">
               Why EchoForms <span className="text-zinc-600">?</span>
             </h2>
@@ -90,10 +90,10 @@ export default function Home() {
         <div className="h-[40rem] w-full flex items-center justify-center p-5">
           <PinContainer title="/ui.aceternity.com">
             <div className="flex basis-full flex-col p-2 tracking-tight text-slate-100/50 sm:basis-1/2 w-[22rem] items-center ">
-              <h3 className="font-bold text-xl text-white/90">
-                Feedback Form
-              </h3>
-              <h4 className="text-white/20 text-lg my-1 ">We value your feedback</h4>
+              <h3 className="font-bold text-xl text-white/90">Feedback Form</h3>
+              <h4 className="text-white/20 text-lg my-1 ">
+                We value your feedback
+              </h4>
               <form className="w-full max-w-md">
                 <Label className="text-white/60">Your Name</Label>
                 <Input
@@ -102,7 +102,6 @@ export default function Home() {
                   placeholder="Enter your name"
                   disabled
                 />
-
                 <Label className="text-white/60">Your Email</Label>
                 <Input
                   type="email"
@@ -110,16 +109,12 @@ export default function Home() {
                   placeholder="Enter your email"
                   disabled
                 />
-
-                <Label className="text-white/60">
-                  Your Feedback
-                </Label>
+                <Label className="text-white/60">Your Feedback</Label>
                 <Textarea
                   className="border-white/20 bg-zinc-950 mb-4"
                   placeholder="Write your feedback here"
                   disabled
                 />
-
                 <Button
                   type="submit"
                   className="w-full bg-blue-600 text-white hover:bg-blue-700"
