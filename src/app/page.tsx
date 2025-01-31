@@ -1,17 +1,18 @@
 "use client";
-import { PinContainer } from "@/components/ui/3d-pin";
-import { BoxReveal } from "@/components/ui/box-reveal";
+// import { PinContainer } from "@/components/ui/3d-pin";
+// import { BoxReveal } from "@/components/ui/box-reveal";
 import { Button } from "@/components/ui/button";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { Input } from "@/components/ui/input";
+// import { Input } from "@/components/ui/input";
 import { InteractiveGridPattern } from "@/components/ui/interactive-grid-pattern";
-import { Label } from "@/components/ui/label";
+// import { Label } from "@/components/ui/label";
 import { Spotlight } from "@/components/ui/spotlight-new";
-import { Textarea } from "@/components/ui/textarea";
+// import { Textarea } from "@/components/ui/textarea";
 import {
-  ArrowRight,
+  // ArrowRight,
   ArrowUpRight,
   ChartColumn,
+  Check,
   Share2,
   Sparkles,
   SquarePen,
@@ -54,7 +55,7 @@ export default function Home() {
     <div className="relative w-full min-h-screen flex flex-col items-center pt-72">
       <Spotlight />
       <InteractiveGridPattern className="top-5 -z-10" />
-      <div className="flex flex-col justify-center items-center gap-5">
+      <div className="flex flex-col justify-center items-center gap-5 pb-80">
         <button className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block">
           <span className="absolute inset-0 overflow-hidden rounded-full">
             <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -93,7 +94,7 @@ export default function Home() {
           </HoverBorderGradient>
         </div>
       </div>
-      <div className="w-full pt-80 pb-40 flex flex-col justify-center items-center gap-10">
+      {/* <div className="w-full pt-80 pb-20 flex flex-col justify-center items-center gap-10">
         <h2 className="text-[3.5rem] font-semibold tracking-tighter text-white/80 mb-5">
           Why EchoForms <span className="text-zinc-600">?</span>
         </h2>
@@ -170,8 +171,8 @@ export default function Home() {
             </PinContainer>
           </div>
         </div>
-      </div>
-      <div className="flex flex-col justify-center items-center gap-10 pb-20">
+      </div> */}
+      <div className="flex flex-col justify-center items-center gap-10 pb-24">
         <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
           How it works <span className="text-zinc-600">?</span>
         </h2>
@@ -202,6 +203,27 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+      <div className="flex flex-col justify-center items-center gap-10 pb-20">
+        <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
+          Plans & Prices.
+        </h2>
+        <div className="border-2 border-white/10 p-5 flex flex-col rounded-xl space-y-2">
+          <p className="text-xl tracking-tight font-bold mb-3">Free</p>
+          <p className="text-5xl  font-bold">
+            ₹25{" "}
+            <span className="text-lg font-normal text-white/50">per month</span>
+          </p>
+          <div className="w-full h-0.5  bg-white/10 my-20" />
+          <p className="text-lg tracking-tight font-medium mb-2 text-white/70">
+            Features
+          </p>
+          <div className="flex items-center gap-1 mb-1">
+            <Check className="bg-white/10 rounded-full p-1 inline" size={20} />
+            <span>Advanced AI-powered form generation</span>
+          </div>
+          <Button>Get Started</Button>
         </div>
       </div>
     </div>
