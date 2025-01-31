@@ -18,6 +18,7 @@ import {
   SquarePen,
   Zap,
 } from "lucide-react";
+import { pricingPlans } from "@/lib/data";
 
 const howItWorks = [
   {
@@ -172,7 +173,7 @@ export default function Home() {
           </div>
         </div>
       </div> */}
-      <div className="flex flex-col justify-center items-center gap-10 pb-24">
+      <div className="flex flex-col justify-center items-center gap-10 pb-32">
         <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
           How it works <span className="text-zinc-600">?</span>
         </h2>
@@ -209,21 +210,31 @@ export default function Home() {
         <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
           Plans & Prices.
         </h2>
-        <div className="border-2 border-white/10 p-5 flex flex-col rounded-xl space-y-2">
-          <p className="text-xl tracking-tight font-bold mb-3">Free</p>
-          <p className="text-5xl  font-bold">
-            ₹25{" "}
-            <span className="text-lg font-normal text-white/50">per month</span>
-          </p>
-          <div className="w-full h-0.5  bg-white/10 my-20" />
-          <p className="text-lg tracking-tight font-medium mb-2 text-white/70">
-            Features
-          </p>
-          <div className="flex items-center gap-1 mb-1">
-            <Check className="bg-white/10 rounded-full p-1 inline" size={20} />
-            <span>Advanced AI-powered form generation</span>
-          </div>
-          <Button>Get Started</Button>
+        <div className="flex justify-center items-center gap-8">
+          {pricingPlans.map((plan) => (
+            <div key={plan.name} className=" bg-zinc-900/50 p-5 px-7 flex flex-col rounded-xl space-y-2">
+              <p className="text-xl tracking-tight font-bold mb-3 text-zinc-200/50">{plan.name}</p>
+              <p className="text-5xl font-bold !mb-2">
+                {plan.price}
+              </p>
+              <div className="w-full h-0.5 bg-white/10"/>
+              <p className="text-lg tracking-tight font-medium mb-2 text-white/70">
+                Features
+              </p>
+              <div className="flex flex-col">
+                {plan.features.map((feature)=>(
+              <div key={feature} className="flex items-center gap-1 mb-1">
+                <Check
+                  className="bg-white/10 rounded-full p-1 inline"
+                  size={20}
+                />
+                <span className="text-zinc-500">{feature}</span>
+              </div>
+                ))}
+              </div>
+              <Button className="bg-zinc-400/10 text-white !mb-1">{plan.buttonText}</Button>
+            </div>
+          ))}
         </div>
       </div>
     </div>
