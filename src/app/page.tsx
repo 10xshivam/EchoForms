@@ -19,6 +19,7 @@ import {
   Zap,
 } from "lucide-react";
 import { pricingPlans } from "@/lib/data";
+import Footer from "@/components/Footer";
 
 const howItWorks = [
   {
@@ -206,7 +207,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center gap-10 pb-20">
+      <div className="flex flex-col justify-center items-center gap-10 pb-32">
         <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
           Plans & Prices.
         </h2>
@@ -237,6 +238,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
