@@ -213,7 +213,7 @@ export default function Home() {
         <div className="flex justify-center items-center gap-8">
           {pricingPlans.map((plan) => (
             <div key={plan.name} className=" bg-zinc-900/50 p-5 px-7 flex flex-col rounded-xl space-y-2">
-              <p className="text-xl tracking-tight font-bold mb-3 text-zinc-200/50">{plan.name}</p>
+              <p className="text-xl tracking-tight font-semibold mb-3 text-zinc-200/50">{plan.name}</p>
               <p className="text-5xl font-bold !mb-2">
                 {plan.price}
               </p>
@@ -232,7 +232,7 @@ export default function Home() {
               </div>
                 ))}
               </div>
-              <Button className="bg-zinc-400/10 text-white !mb-1">{plan.buttonText}</Button>
+              <Button className="bg-zinc-400/10 hover:bg-zinc-400/30 text-white !mb-1">{plan.buttonText}</Button>
             </div>
           ))}
         </div>
