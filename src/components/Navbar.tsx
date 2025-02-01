@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full h-16 border-b border-black/10 dark:border-white/10  backdrop-blur-xl items-center flex px-7 justify-between z-50">
       <div className="flex justify-center items-center gap-1">
-        <Image src="/logo.png" alt="EchoForms" width={26} height={26} />
+        <Image src="/Logo.png" alt="EchoForms" width={26} height={26} />
         <span className="text-xl font-bold text-black/70 dark:text-white/70 tracking-tighter">EchoForms</span>
       </div>
       <div className="flex justify-center items-center gap-4">
