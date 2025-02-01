@@ -62,7 +62,7 @@ export default function Home() {
           <span className="absolute inset-0 overflow-hidden rounded-full">
             <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           </span>
-          <div className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 ">
+          <div className="relative flex space-x-2 items-center z-10 rounded-full dark:bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 ">
             <Sparkles className="w-4" />
             <span>AI-Powered Form Generation</span>
           </div>
@@ -175,14 +175,14 @@ export default function Home() {
         </div>
       </div> */}
       <div className="flex flex-col justify-center items-center gap-10 pb-32">
-        <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
+        <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-black to-black/70 dark:from-white dark:to-white/70 bg-clip-text text-transparent">
           How it works ?
         </h2>
         <div className="w-full flex flex-col items-center justify-center  gap-7 max-md:pt-10 max-md:px-7 max-md:gap-6">
           {howItWorks.map((step) => (
             <div
               key={step.step}
-              className="group relative overflow-hidden rounded-2xl bg-zinc-900 p-6 transition-all hover:bg-zinc-800/80 max-md:p-5"
+              className="group relative overflow-hidden rounded-2xl bg-zinc-900/10 dark:bg-zinc-900 p-6 transition-all hover:bg-zinc-900/20 dark:hover:bg-zinc-800/80 max-md:p-5"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
               <div className="flex gap-6 max-md:flex-col max-md:gap-2">
@@ -192,13 +192,13 @@ export default function Home() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-medium text-zinc-400">
+                  <div className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
                     Step {step.step}
                   </div>
-                  <h3 className="mt-2 text-xl font-medium text-white max-md:text-[1.3rem]">
+                  <h3 className="mt-2 text-xl font-medium text-black dark:text-white max-md:text-[1.3rem]">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-base leading-relaxed text-zinc-400  max-w-3xl max-md:leading-5 max-md:text-[0.9rem]">
+                  <p className="mt-2 text-base leading-relaxed text-zinc-500 dark:text-zinc-400  max-w-3xl max-md:leading-5 max-md:text-[0.9rem]">
                     {step.description}
                   </p>
                 </div>
