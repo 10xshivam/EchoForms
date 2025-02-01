@@ -13,7 +13,7 @@ export default function Navbar() {
         <span className="text-xl font-bold text-black/70 dark:text-white/70 tracking-tighter">EchoForms</span>
       </div>
       <div className="flex justify-center items-center gap-4">
-        <Button className="bg-transparent text-black/90 dark:text-white/90 dark:hover:bg-white/10 border-2 shadow-none hover:border-none border-black/10 hover:bg-black/5 dark:border-white/5">Sign up</Button>
+        <Button className="bg-zinc-700 hover:bg-zinc-800 text-white text-sm">Sign up</Button>
         <Link href={"https://github.com/10xshivam/EchoForms"} target="blank">
         <Github className="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black"/>
         </Link>
