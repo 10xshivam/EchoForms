@@ -29,7 +29,7 @@ export const authOptions : NextAuthOptions  = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Email aur Password required hai!");
+          throw new Error("Email or Password is required");
         }
 
         const user = await db.query.users.findFirst({
@@ -37,7 +37,7 @@ export const authOptions : NextAuthOptions  = {
         });
 
         if (!user || !user.passwordHash) {
-          throw new Error("User exist nahi karta ya incorrect password!");
+          throw new Error("User not exists or incorrect password");
         }
 
         const isValidPassword = await bcrypt.compare(credentials.password, user.passwordHash);
