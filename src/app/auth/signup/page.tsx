@@ -34,9 +34,9 @@ export default function SignupPage() {
   };
 
   return (
-    <div>
+    <div className="w-full min-h-screen flex flex-col justify-center items-center">
       <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center">
         <input type="text" placeholder="Name" onChange={(e) => setForm({ ...form, name: e.target.value })} />
         <input type="email" placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} />
         <input type="password" placeholder="Password" onChange={(e) => setForm({ ...form, password: e.target.value })} />
