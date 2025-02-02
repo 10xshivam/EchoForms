@@ -7,6 +7,7 @@ import {
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 255 }),
     email: varchar("email", { length: 255 }).unique().notNull(),
+    image: text("image"),
     passwordHash: text("password_hash"),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   });
@@ -16,6 +17,8 @@ import {
     userId: integer("user_id").references(() => users.id, { onDelete: "cascade" }).notNull(),
     title: varchar("title", { length: 255 }).notNull(),
     fields: text("fields").notNull(),
+    shareableLink: varchar("shareable_link", { length: 255 }).notNull(),
+    qrCode: text("qr_code").notNull(), 
     createdAt: timestamp("created_at").defaultNow().notNull(),
   });
   

@@ -1,5 +1,5 @@
 {
-  "id": "36c9c0ee-71a5-4b9b-b9d9-ac86f862a8b2",
+  "id": "59af6641-0631-4d43-a041-9cf802b328cd",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -88,6 +88,18 @@
         },
         "fields": {
           "name": "fields",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "shareable_link": {
+          "name": "shareable_link",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "qr_code": {
+          "name": "qr_code",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -259,6 +271,12 @@
           "type": "varchar(255)",
           "primaryKey": false,
           "notNull": true
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "password_hash": {
           "name": "password_hash",

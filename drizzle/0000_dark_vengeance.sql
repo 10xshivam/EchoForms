@@ -11,6 +11,8 @@ CREATE TABLE "forms" (
 	"user_id" integer NOT NULL,
 	"title" varchar(255) NOT NULL,
 	"fields" text NOT NULL,
+	"shareable_link" varchar(255) NOT NULL,
+	"qr_code" text NOT NULL,
 	"created_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
@@ -34,6 +36,7 @@ CREATE TABLE "users" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(255),
 	"email" varchar(255) NOT NULL,
+	"image" text,
 	"password_hash" text,
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	CONSTRAINT "users_email_unique" UNIQUE("email")
