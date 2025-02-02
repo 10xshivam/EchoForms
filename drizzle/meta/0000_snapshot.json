@@ -1,71 +1,11 @@
 {
-  "id": "59af6641-0631-4d43-a041-9cf802b328cd",
+  "id": "3537ea81-514b-44eb-9ea5-1e9f0731e264",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.accounts": {
-      "name": "accounts",
-      "schema": "",
-      "columns": {
-        "provider": {
-          "name": "provider",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "provider_account_id": {
-          "name": "provider_account_id",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "accounts_user_id_users_id_fk": {
-          "name": "accounts_user_id_users_id_fk",
-          "tableFrom": "accounts",
-          "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {
-        "accounts_provider_provider_account_id_pk": {
-          "name": "accounts_provider_provider_account_id_pk",
-          "columns": [
-            "provider",
-            "provider_account_id"
-          ]
-        }
-      },
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.forms": {
-      "name": "forms",
+    "public.form": {
+      "name": "form",
       "schema": "",
       "columns": {
         "id": {
@@ -78,7 +18,7 @@
           "name": "user_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "title": {
           "name": "title",
@@ -88,54 +28,62 @@
         },
         "fields": {
           "name": "fields",
-          "type": "text",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": true
         },
-        "shareable_link": {
-          "name": "shareable_link",
-          "type": "varchar(255)",
+        "share_url": {
+          "name": "share_url",
+          "type": "varchar(512)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
-        "qr_code": {
-          "name": "qr_code",
-          "type": "text",
+        "qrcode": {
+          "name": "qrcode",
+          "type": "varchar(512)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "forms_user_id_users_id_fk": {
-          "name": "forms_user_id_users_id_fk",
-          "tableFrom": "forms",
-          "tableTo": "users",
+        "form_user_id_user_id_fk": {
+          "name": "form_user_id_user_id_fk",
+          "tableFrom": "form",
+          "tableTo": "user",
           "columnsFrom": [
             "user_id"
           ],
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
+          "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "form_share_url_unique": {
+          "name": "form_share_url_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "share_url"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.responses": {
-      "name": "responses",
+    "public.response": {
+      "name": "response",
       "schema": "",
       "columns": {
         "id": {
@@ -148,17 +96,11 @@
           "name": "form_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
-        },
-        "respondent_name": {
-          "name": "respondent_name",
-          "type": "varchar(255)",
-          "primaryKey": false,
           "notNull": false
         },
-        "response_data": {
-          "name": "response_data",
-          "type": "text",
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": true
         },
@@ -166,23 +108,23 @@
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "responses_form_id_forms_id_fk": {
-          "name": "responses_form_id_forms_id_fk",
-          "tableFrom": "responses",
-          "tableTo": "forms",
+        "response_form_id_form_id_fk": {
+          "name": "response_form_id_form_id_fk",
+          "tableFrom": "response",
+          "tableTo": "form",
           "columnsFrom": [
             "form_id"
           ],
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
+          "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
@@ -192,8 +134,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.subscriptions": {
-      "name": "subscriptions",
+    "public.subscription": {
+      "name": "subscription",
       "schema": "",
       "columns": {
         "id": {
@@ -206,52 +148,55 @@
           "name": "user_id",
           "type": "integer",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
-        "plan": {
-          "name": "plan",
-          "type": "varchar(50)",
+        "subscribed": {
+          "name": "subscribed",
+          "type": "boolean",
           "primaryKey": false,
-          "notNull": true
-        },
-        "expires_at": {
-          "name": "expires_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true
+          "notNull": false,
+          "default": false
         },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "subscriptions_user_id_users_id_fk": {
-          "name": "subscriptions_user_id_users_id_fk",
-          "tableFrom": "subscriptions",
-          "tableTo": "users",
+        "subscription_user_id_user_id_fk": {
+          "name": "subscription_user_id_user_id_fk",
+          "tableFrom": "subscription",
+          "tableTo": "user",
           "columnsFrom": [
             "user_id"
           ],
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
+          "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "subscription_user_id_unique": {
+          "name": "subscription_user_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "user_id"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.users": {
-      "name": "users",
+    "public.user": {
+      "name": "user",
       "schema": "",
       "columns": {
         "id": {
@@ -272,15 +217,15 @@
           "primaryKey": false,
           "notNull": true
         },
-        "image": {
-          "name": "image",
-          "type": "text",
+        "password": {
+          "name": "password",
+          "type": "varchar(255)",
           "primaryKey": false,
           "notNull": false
         },
-        "password_hash": {
-          "name": "password_hash",
-          "type": "text",
+        "profile_image": {
+          "name": "profile_image",
+          "type": "varchar(512)",
           "primaryKey": false,
           "notNull": false
         },
@@ -288,7 +233,7 @@
           "name": "created_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "default": "now()"
         }
       },
@@ -296,8 +241,8 @@
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "users_email_unique": {
-          "name": "users_email_unique",
+        "user_email_unique": {
+          "name": "user_email_unique",
           "nullsNotDistinct": false,
           "columns": [
             "email"
