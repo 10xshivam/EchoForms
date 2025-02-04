@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "next-themes";
-import AuthProvider from "@/context/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,14 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <AuthProvider>
         <body className={`${inter.className} overflow-x-hidden`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navbar />
             {children}
           </ThemeProvider>
         </body>
-      </AuthProvider>
     </html>
   );
 }
