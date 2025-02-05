@@ -40,7 +40,7 @@ export default function Dashboard() {
           <p><strong>Account Created:</strong> {user?.createdAt?.toLocaleDateString()}</p>
         </div>
       </div>
-      <button onClick={() => signOut({ redirectUrl: '/' })}>Sign out</button>
+      <button onClick={() => signOut({ redirectUrl: '/sign-in' })}>Sign out</button>
     </div>
   );
 }
