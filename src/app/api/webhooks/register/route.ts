@@ -9,6 +9,7 @@ export async function POST(req: Request) {
   const svix_id = req.headers.get("svix-id");
   const svix_timestamp = req.headers.get("svix-timestamp");
   const svix_signature = req.headers.get("svix-signature");
+  
 
   if (!svix_id || !svix_timestamp || !svix_signature) {
     console.error("Missing Svix headers:", { svix_id, svix_timestamp, svix_signature });
