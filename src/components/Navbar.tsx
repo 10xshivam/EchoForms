@@ -13,7 +13,7 @@ export default function Navbar() {
         <span className="text-xl font-bold text-black/70 dark:text-white/70 tracking-tighter">EchoForms</span>
       </div>
       <div className="flex justify-center items-center gap-4">
-        <Link href="/auth/signup">
+        <Link href="/sign-up">
           <Button className="bg-zinc-700 hover:bg-zinc-800 text-white text-sm">
             Sign up
           </Button>
