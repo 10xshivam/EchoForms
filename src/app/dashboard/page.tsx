@@ -1,13 +1,13 @@
 'use client';
 import { useAuth, useUser } from '@clerk/nextjs'
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { useClerk } from '@clerk/nextjs'
 
 export default function Dashboard() {
   const { user } = useUser();
-
+  const { signOut } = useClerk()
   const { isSignedIn } = useAuth();
   const router = useRouter();
 
@@ -40,9 +40,7 @@ export default function Dashboard() {
           <p><strong>Account Created:</strong> {user?.createdAt?.toLocaleDateString()}</p>
         </div>
       </div>
-      <Link href="/" className="sign-out-button">
-        Sign Out
-      </Link>
+      <button onClick={() => signOut({ redirectUrl: '/' })}>Sign out</button>
     </div>
   );
 }
