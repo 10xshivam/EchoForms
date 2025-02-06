@@ -13,7 +13,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (isSignedIn) {
-      router.push("/dashboard");  // Redirect after login
+      router.push("/dashboard");
     }
   }, [isSignedIn, router]);
 
