@@ -4,25 +4,50 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarImage } from "@/components/ui/avatar"
-import { useUser } from "@clerk/nextjs";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { useClerk, useUser } from "@clerk/nextjs";
+import { ThemeToggle } from "./ThemeToggle";
+import { LogOut } from "lucide-react";
+import { Button } from "./ui/button";
 
 export default function User() {
-    const { user } = useUser();
+  const { user } = useUser();
+  const { signOut } = useClerk();
+  if (!user) {
+    return null;
+  }
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger> <Avatar>
-        <AvatarImage src={user?.imageUrl} />
-      </Avatar></DropdownMenuTrigger>
+      <DropdownMenuTrigger className="focus:outline-none">
+        {" "}
+        <Avatar>
+          <AvatarImage src={user.imageUrl} />
+        </Avatar>
+      </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel className="pb-0">{user.fullName}</DropdownMenuLabel>
+        <DropdownMenuLabel className="text-zinc-100/50 text-sm pt-0.5 font-normal">
+          {user.primaryEmailAddress?.emailAddress}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem>
+        <DropdownMenuLabel className="flex justify-between items-center font-normal">
+          Theme
+          <ThemeToggle />
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={() => signOut({ redirectUrl: "/sign-in" })}>
+          Sign Out
+          <DropdownMenuShortcut>
+            <LogOut size={16} />
+          </DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>
+          <Button className="w-full">Upgrade to Pro</Button>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

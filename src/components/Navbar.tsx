@@ -1,10 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import { ThemeToggle } from "./ThemeToggle";
+// import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "./ui/button";
 import { LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
+import User from "./User";
 
 
 export default function Navbar() {
@@ -29,11 +30,10 @@ export default function Navbar() {
           Dashboard
         </Button>
       </Link>
-       
+       <User/>
           </>
       
         }
-        <ThemeToggle/>
       </div>
     </nav>
   );
