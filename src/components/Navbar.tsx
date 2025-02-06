@@ -2,10 +2,10 @@ import Image from "next/image";
 import React from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "./ui/button";
-import { Github } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 
 
 export default function Navbar() {
@@ -23,15 +23,19 @@ export default function Navbar() {
             Sign up
           </Button>
         </Link>) :
+          <>
+        <Link href="/dashboard">
+        <Button className="bg-transparent border hover:border-none border-zinc-100/10 hover:bg-zinc-800 text-white text-sm ">
+          <LayoutDashboard/>
+          Dashboard
+        </Button>
+      </Link>
         <Avatar>
         <AvatarImage src={user.imageUrl} />
-        <AvatarFallback>CN</AvatarFallback>
       </Avatar>
+          </>
       
         }
-        <Link href={"https://github.com/10xshivam/EchoForms"} target="blank">
-        <Github className="dark:text-white/60 dark:hover:text-white text-black/60 hover:text-black"/>
-        </Link>
         <ThemeToggle/>
       </div>
     </nav>
