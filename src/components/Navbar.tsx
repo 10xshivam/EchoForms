@@ -5,7 +5,6 @@ import { Button } from "./ui/button";
 import { LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
-import { Avatar, AvatarImage } from "@/components/ui/avatar"
 
 
 export default function Navbar() {
@@ -30,9 +29,7 @@ export default function Navbar() {
           Dashboard
         </Button>
       </Link>
-        <Avatar>
-        <AvatarImage src={user.imageUrl} />
-      </Avatar>
+       
           </>
       
         }
