@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { pricingPlans } from "@/lib/data";
 import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 const howItWorks = [
   {
@@ -55,6 +56,7 @@ const howItWorks = [
 export default function Home() {
   return (
     <div className="relative w-full min-h-screen flex flex-col items-center pt-72">
+      <Navbar/>
       <Spotlight />
       <InteractiveGridPattern className="top-5 -z-10" />
       <div className="flex flex-col justify-center items-center gap-5 pb-80">
