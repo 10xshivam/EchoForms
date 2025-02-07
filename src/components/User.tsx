@@ -29,7 +29,7 @@ export default function User() {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel className="pb-0">{user.fullName}</DropdownMenuLabel>
-        <DropdownMenuLabel className="text-zinc-100/50 text-sm pt-0.5 font-normal">
+        <DropdownMenuLabel className="text-black/50 dark:text-zinc-100/50 text-sm pt-0.5 font-normal">
           {user.primaryEmailAddress?.emailAddress}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

@@ -32,7 +32,7 @@ export default function Navbar() {
         </> :
           <>
         <Link href="/dashboard">
-        <Button className="bg-transparent border hover:border-none border-zinc-100/10 hover:bg-zinc-800 text-white text-sm ">
+        <Button className="bg-transparent border hover:border-none  dark:border-zinc-100/10 hover:bg-zinc-800/10  dark:hover:bg-zinc-800 text-black dark:text-white text-sm ">
           <LayoutDashboard/>
           Dashboard
         </Button>
