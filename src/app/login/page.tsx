@@ -61,21 +61,29 @@ export default function Signin() {
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-background">
       <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
-      <Link href={'/'} className=" py-2 px-3 rounded-lg flex justify-center items-center">
-      <ChevronLeft className="inline text-zinc-500 mr-3" size={20} strokeWidth={2}/>{" "}
-      Home
-      </Link>
-      <ThemeToggle/>
+        <Link
+          href={"/"}
+          className=" py-2 px-3 rounded-lg flex justify-center items-center"
+        >
+          <ChevronLeft
+            className="inline text-zinc-500 mr-3"
+            size={20}
+            strokeWidth={2}
+          />{" "}
+          Home
+        </Link>
+        <ThemeToggle />
       </div>
       <Card className="w-full max-w-md">
         <CardHeader>
-        <div className='w-fit p-3 mx-auto bg-gray-100 rounded-full dark:bg-zinc-800'>
-          <Image src="/Logo.png" alt="EchoForms" width={30} height={30}/></div>
+          <div className="w-fit p-3 mx-auto bg-gray-100 rounded-full dark:bg-zinc-800">
+            <Image src="/Logo.png" alt="EchoForms" width={30} height={30} />
+          </div>
           <CardTitle className="text-xl font-bold text-center">
-          Welcome back!
+            Welcome back!
           </CardTitle>
           <CardDescription className="text-center">
-          Please enter your details to login
+            Please enter your details to login
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -118,7 +126,10 @@ export default function Signin() {
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
-            <Button type="submit" className="w-full bg-zinc-700 hover:bg-zinc-800 text-white text-sm">
+            <Button
+              type="submit"
+              className="w-full bg-zinc-700 hover:bg-zinc-800 text-white text-sm"
+            >
               Sign In
             </Button>
           </form>

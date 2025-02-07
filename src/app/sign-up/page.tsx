@@ -15,7 +15,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { ChevronLeft, Eye, EyeOff } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import Image from "next/image";
 
 export default function Signup() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -81,12 +83,29 @@ export default function Signup() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background">
+      <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
+        <Link
+          href={"/"}
+          className=" py-2 px-3 rounded-lg flex justify-center items-center"
+        >
+          <ChevronLeft
+            className="inline text-zinc-500 mr-3"
+            size={20}
+            strokeWidth={2}
+          />{" "}
+          Home
+        </Link>
+        <ThemeToggle />
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold ">
+          <div className="w-fit p-3 mx-auto bg-gray-100 rounded-full dark:bg-zinc-800">
+                      <Image src="/Logo.png" alt="EchoForms" width={30} height={30} />
+                    </div>
+          <CardTitle className="text-xl font-bold text-center">
             Create an account
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-center">
             Enter your details below to create your account
           </CardDescription>
         </CardHeader>
@@ -235,10 +254,10 @@ export default function Signup() {
           <p className="text-sm text-muted-foreground">
             Already have an account?{" "}
             <Link
-              href="/sign-in"
+              href="/login"
               className="font-medium text-primary hover:underline"
             >
-              Sign in
+              Login
             </Link>
           </p>
         </CardFooter>
