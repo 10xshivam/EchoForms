@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+// import { AppSidebar } from "@/components/app-sidebar"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,14 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={`${inter.className} overflow-x-hidden`}>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <SidebarProvider>
+      <ClerkProvider>
+        <html lang="en" suppressHydrationWarning>
+          <body className={`${inter.className} overflow-x-hidden`}>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              <SidebarTrigger />
+              {children}
+            </ThemeProvider>
+          </body>
+        </html>
+      </ClerkProvider>
+    </SidebarProvider>
   );
 }
