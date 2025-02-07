@@ -38,8 +38,8 @@ export default function User() {
           <ThemeToggle />
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut({ redirectUrl: "/sign-in" })}>
-          Sign Out
+        <DropdownMenuItem onClick={() => signOut({ redirectUrl: "/login" })}>
+          Log Out
           <DropdownMenuShortcut>
             <LogOut size={16} />
           </DropdownMenuShortcut>

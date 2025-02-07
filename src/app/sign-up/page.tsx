@@ -100,8 +100,8 @@ export default function Signup() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <div className="w-fit p-3 mx-auto bg-gray-100 rounded-full dark:bg-zinc-800">
-                      <Image src="/Logo.png" alt="EchoForms" width={30} height={30} />
-                    </div>
+            <Image src="/Logo.png" alt="EchoForms" width={30} height={30} />
+          </div>
           <CardTitle className="text-xl font-bold text-center">
             Create an account
           </CardTitle>
