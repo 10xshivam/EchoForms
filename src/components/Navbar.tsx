@@ -2,10 +2,11 @@ import Image from "next/image";
 import React from "react";
 // import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "./ui/button";
-import { LayoutDashboard } from "lucide-react";
+import { Github, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import User from "./User";
+import { ThemeToggle } from "./ThemeToggle";
 
 
 export default function Navbar() {
@@ -18,11 +19,17 @@ export default function Navbar() {
       </div>
       <div className="flex justify-center items-center gap-4">
         {!user ? 
-        (<Link href="/sign-up">
+        <>
+        <Link href="/login">
           <Button className="bg-zinc-700 hover:bg-zinc-800 text-white text-sm">
-            Sign up
+            Log in
           </Button>
-        </Link>) :
+        </Link>
+        <Link href={"https://github.com/shivam-tsx/Safe-Report"} className="text-black/60 dark:text-white/70 hover:text-black dark:hover:text-white">
+          <Github/>
+        </Link>
+        <ThemeToggle/>
+        </> :
           <>
         <Link href="/dashboard">
         <Button className="bg-transparent border hover:border-none border-zinc-100/10 hover:bg-zinc-800 text-white text-sm ">

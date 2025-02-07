@@ -9,12 +9,15 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { ChevronLeft, Eye, EyeOff } from "lucide-react";
+import Image from "next/image";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Signin() {
   const [emailAddress, setEmailAddress] = useState("");
@@ -49,26 +52,31 @@ export default function Signin() {
       } else {
         console.log(JSON.stringify(result, null, 2));
       }
-    } catch (error: unknown) {
-      if (
-        error instanceof Error &&
-        "errors" in error &&
-        Array.isArray(error.errors) &&
-        error.errors.length > 0
-      ) {
-        setError(error.errors[0].message);
-      } else {
-        setError("An unknown error occurred");
-      }
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "An error occurred during sign up"
+      );
     }
   }
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
+    <div className="relative flex items-center justify-center min-h-screen bg-background">
+      <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
+      <Link href={'/'} className=" py-2 px-3 rounded-lg flex justify-center items-center">
+      <ChevronLeft className="inline text-zinc-500 mr-3" size={20} strokeWidth={2}/>{" "}
+      Home
+      </Link>
+      <ThemeToggle/>
+      </div>
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
-            Sign In to Todo Master
+        <div className='w-fit p-3 mx-auto bg-gray-100 rounded-full dark:bg-zinc-800'>
+          <Image src="/Logo.png" alt="EchoForms" width={30} height={30}/></div>
+          <CardTitle className="text-xl font-bold text-center">
+          Welcome back!
           </CardTitle>
+          <CardDescription className="text-center">
+          Please enter your details to login
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={submit} className="space-y-4">
@@ -98,9 +106,9 @@ export default function Signin() {
                   className="absolute right-2 top-1/2 -translate-y-1/2"
                 >
                   {showPassword ? (
-                    <EyeOff className="h-4 w-4 text-gray-500" />
-                  ) : (
                     <Eye className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
                   )}
                 </button>
               </div>
