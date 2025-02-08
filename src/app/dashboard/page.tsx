@@ -13,32 +13,38 @@ import {
 import { format } from "date-fns";
 import User from "@/components/User";
 import Link from "next/link";
+import { useState } from "react";
 
 const options = [
   {
     icon: <LibraryBig />,
     name: "My Forms",
-    url: "",
+    url: "/my-forms",
   },
   {
     icon: <TextQuote />,
     name: "Responses",
-    url: "",
+    url: "/responses",
   },
   {
     icon: <ChartColumn />,
     name: "Analyze",
-    url: "",
+    url: "/analyze",
   },
   {
     icon: <CircleFadingArrowUp />,
     name: "Upgrade",
-    url: "",
+    url: "/upgrade",
   },
 ];
 
 export default function Dashboard() {
   const currentDate = format(new Date(), "MMMM dd, yyyy");
+  const [activeUrl, setActiveUrl] = useState("");
+
+  const handleOptionClick = (url:string) => {
+    setActiveUrl(url);
+  };
 
   return (
     <div className="w-full min-h-screen flex p-4 gap-4">
@@ -60,7 +66,8 @@ export default function Dashboard() {
           {options.map((option) => (
             <div
               key={option.name}
-              className="flex gap-3 items-center hover:bg-zinc-500/20 p-2 cursor-pointer rounded-lg "
+              className="flex gap-3 items-center hover:bg-zinc-500/20 p-2 cursor-pointer rounded-lg"
+              onClick={() => handleOptionClick(option.url)}
             >
               {option.icon}
               <span>{option.name}</span>
@@ -68,7 +75,7 @@ export default function Dashboard() {
           ))}
         </div>
       </div>
-      <div className="w-full px-2">
+      <div className="w-full px-2 flex flex-col">
         <div className="w-full h-16 flex items-center justify-between">
           <div className="flex items-center gap-x-2">
             <Calendar size={18} />
@@ -85,7 +92,11 @@ export default function Dashboard() {
           </div>
         </div>
         <Separator />
-        
+        <div className="w-full flex-grow mt-3">
+          {activeUrl && (
+            <iframe src={`dashboard/${activeUrl}`} className="w-full h-full border-none"></iframe>
+          )}
+        </div>
       </div>
     </div>
   );
