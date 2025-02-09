@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
         <body className={`${inter.className} overflow-x-hidden`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
+            <Toaster />
           </ThemeProvider>
         </body>
       </html>

@@ -13,7 +13,6 @@ export async function POST(req: NextRequest) {
         if (!user) {
             return NextResponse.json({ error: "User not found" });
         }
-        console.log(user);
 
         const formContent = await generateAIContent(description);
         if (!formContent) {
@@ -29,7 +28,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             success: true,
             message: "Form generated successfully.",
-            data: form
+            formId: form[0].id
         });
     } catch (error) {
         console.error("Error generating form", error);
