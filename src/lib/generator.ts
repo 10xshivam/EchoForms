@@ -1,7 +1,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai"
 
 const prompt = `
-Generate a structured JSON response for a dynamic form using the following specifications:
+Generate a valid JSON response without formatting it as a code block. Do not include json or triple backticks. Return raw JSON only.
+
 
 {
   "formTitle": "string",
