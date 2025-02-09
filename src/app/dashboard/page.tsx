@@ -7,13 +7,13 @@ import {
   CircleFadingArrowUp,
   House,
   LibraryBig,
-  Plus,
   TextQuote,
 } from "lucide-react";
 import { format } from "date-fns";
 import User from "@/components/User";
 import Link from "next/link";
 import { useState } from "react";
+import { CreateForm } from "@/components/CreateForm";
 
 const options = [
   {
@@ -58,10 +58,7 @@ export default function Dashboard() {
           </span>
         </div>
         <Separator />
-        <div className="flex gap-2 items-center bg-zinc-500/40 hover:bg-zinc-500/20 cursor-pointer p-2 rounded-lg my-3">
-          <Plus size={25} strokeWidth={2} />
-          <span>Create a form</span>
-        </div>
+        <CreateForm/>
         <div className="flex flex-col gap-3">
           {options.map((option) => (
             <div
