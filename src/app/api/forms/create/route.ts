@@ -11,13 +11,13 @@ export async function POST(req: NextRequest) {
 
         const user = await currentUser();
         if (!user) {
-            return NextResponse.json({ message: "User not found" });
+            return NextResponse.json({ error: "User not found" });
         }
         console.log(user);
 
         const formContent = await generateAIContent(description);
         if (!formContent) {
-            return NextResponse.json({ message: "Unable to generate form" });
+            return NextResponse.json({ error: "Unable to generate form" });
         }
         console.log(formContent);
 
@@ -33,6 +33,6 @@ export async function POST(req: NextRequest) {
         });
     } catch (error) {
         console.error("Error generating form", error);
-        return NextResponse.json({ success: false, message: "An error occurred while generating the form" });
+        return NextResponse.json({ success: false, error: "An error occurred while generating the form" });
     }
 }

@@ -9,14 +9,55 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Plus } from "lucide-react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { LoaderCircle, Plus } from "lucide-react"
 import { useState } from "react";
+import { Textarea } from "./ui/textarea"
+import axios from "axios";
+
+const formSchema = z.object({
+    description: z.string().min(10, {
+      message: "Description must be at least 10 characters.",
+    }),
+  })
 
 export function CreateForm() {
-  const [name, setName] = useState("Pedro Duarte");
-  const [username, setUsername] = useState("@peduarte");
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [error, setError] = useState("");
+  const form = useForm<z.infer<typeof formSchema >>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      description:""
+    },
+  });
+
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    try {
+      const response = await axios.post("/api/forms/create",data);
+      console.log(response?.data)
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response?.data?.error) {
+        setError(err.response.data.error);
+        console.log(err.response.data.error)
+      } else {
+        setError("Something went wrong.");
+      }
+    } finally {
+      console.log("Resetting isSubmitting state");
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Dialog>
@@ -28,38 +69,47 @@ export function CreateForm() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle>Create a form</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you are done.
+            Enter a prompt to see the magic
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="col-span-3"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="col-span-3"
-            />
-          </div>
-        </div>
+        <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Give a brief description of your form" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        {error && <p>{error}</p>}
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="group bg-zinc-200 hover:bg-zinc-400 w-full h-9 rounded-lg"
+        >
+          {isSubmitting ? (
+            <>
+              <LoaderCircle className="text-white animate-spin h-5 w-5" />
+              Submitting...
+            </>
+          ) : (
+            <>
+              Submit
+            </>
+          )}
+        </Button>
         </DialogFooter>
+      </form>
+    </Form>
       </DialogContent>
     </Dialog>
   );
