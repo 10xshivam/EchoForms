@@ -16,7 +16,7 @@ export async function GET(req:NextRequest) {
       return NextResponse.json({ error: "Form ID is required" }, { status: 400 });
     }
 
-    // Fetch form from DB
+    
     const fetchedForm = await db
       .select()
       .from(forms)
@@ -27,7 +27,7 @@ export async function GET(req:NextRequest) {
       return NextResponse.json({ error: "Form not found" }, { status: 404 });
     }
 
-    console.log(fetchedForm[0])
+    // console.log(fetchedForm[0])
 
     return NextResponse.json({ success: true, form: fetchedForm[0] });
   } catch (error) {
