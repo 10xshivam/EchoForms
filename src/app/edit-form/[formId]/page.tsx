@@ -24,8 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { SquarePen, Trash2 } from "lucide-react";
-import { DialogTrigger } from "@radix-ui/react-dialog";
+import { Plus, SquarePen, Trash2 } from "lucide-react";
 
 interface FormField {
   fieldName: string;
@@ -168,7 +167,7 @@ export default function FormDetail() {
       });
 
       setNewField({ fieldType: "text", required: false });
-      setIsDialogOpen(false);
+      setIsAddFieldDialogOpen(false);
     } catch (error) {
       console.error("Failed to add field:", error);
     }
@@ -341,6 +340,16 @@ export default function FormDetail() {
             )} */}
           </div>
         ))}
+        <Button
+        type="button"
+        variant="outline"
+                className=" w-full"
+                onClick={() => {
+                  setIsAddFieldDialogOpen(true);
+                }}
+        >
+          <Plus/>
+          Add more fields</Button>
         <Button type="submit" className="w-full">
           Submit
         </Button>
@@ -407,9 +416,6 @@ export default function FormDetail() {
         </DialogContent>
       </Dialog>
       <Dialog open={isAddFieldDialogOpen} onOpenChange={setIsAddFieldDialogOpen}>
-        <DialogTrigger asChild>
-          <Button variant="outline">Add Field</Button>
-        </DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Add New Field</DialogTitle>
