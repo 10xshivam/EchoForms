@@ -24,7 +24,9 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Plus, SquarePen, Trash2 } from "lucide-react";
+import { ChevronLeft, Plus, SquarePen, Trash2 } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import Link from "next/link";
 
 interface FormField {
   fieldName: string;
@@ -57,6 +59,7 @@ export default function FormDetail() {
   const [selectedField, setSelectedField] = useState<FormField | null>(null);
   const [dialogType, setDialogType] = useState<"update" | "delete">("update");
   const [isAddFieldDialogOpen, setIsAddFieldDialogOpen] = useState(false);
+  const [shareId,setShareId] = useState("")
   const [newField, setNewField] = useState<Partial<FormField>>({
     fieldType: "text",
     required: false,
@@ -70,6 +73,7 @@ export default function FormDetail() {
     try {
       const res = await axios.get(`/api/forms/details?formId=${formId}`);
       const data = await res?.data;
+      setShareId(data.form.shareUrl)
       if (data.success) {
         setFormDetails(data.form.content as FormDetails);
         reactForm.reset(data.form.content);
@@ -182,19 +186,39 @@ export default function FormDetail() {
   }
 
   return (
-    <div className="max-w-lg mx-auto p-6 shadow-lg rounded-lg">
+    <div className="relative w-full min-h-screen flex flex-col pt-28">
+      <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
+        <Link
+          href={"/"}
+          className=" py-2 px-3 rounded-lg flex justify-center items-center"
+        >
+          <ChevronLeft
+            className="inline text-zinc-500 mr-3"
+            size={20}
+            strokeWidth={2}
+          />{" "}
+          Home
+        </Link>
+        <div className="flex gap-x-3">
+        <ThemeToggle />
+        <Link href={`/form/submit/${shareId}`}>
+        <Button>Live Preview</Button>
+        </Link>
+        <Button>Share</Button>
+        </div>
+      </div>
+      <form
+        onSubmit={reactForm.handleSubmit((data) =>
+          console.log("Form Submitted:", data)
+        )}
+        className="space-y-4 mt-4 max-w-lg mx-auto"
+      >
       <h2 className="text-2xl font-bold text-center">
         {formDetails.formTitle}
       </h2>
       <p className="text-white/50 text-center text-sm">
         {formDetails.formHeading}
       </p>
-      <form
-        onSubmit={reactForm.handleSubmit((data) =>
-          console.log("Form Submitted:", data)
-        )}
-        className="space-y-4 mt-4"
-      >
         {formDetails.formFields.map((field) => (
           <div key={field.fieldName} className="relative flex flex-col gap-2">
             <Label htmlFor={field.fieldName}>{field.fieldTitle}</Label>
