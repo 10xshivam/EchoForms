@@ -1,22 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/db";
-import { forms } from "@/db/schema";
+import { db } from "@/db"; // Import your Drizzle ORM instance
+import { forms } from "@/db/schema"; // Import your forms schema
 import { eq } from "drizzle-orm";
 
-export async function POST(req: NextRequest) {
+export async function PUT(req:NextRequest) {
+  const { searchParams } = new URL(req.url); 
+    const formId = searchParams.get('formId'); 
+
+  if (!formId) {
+    return NextResponse.json({ success: false, error: "Form ID is required" }, { status: 400 });
+  }
+
   try {
-    const { formId, updatedFields, formTitle, formHeading } = await req.json();
+    const body = await req.json();
+    const { content } = body;
 
-    await db
-      .update(forms)
-      .set({
-        content: JSON.stringify({ formTitle, formHeading, formFields: updatedFields }),
-      })
-      .where(eq(forms.id, formId));
+    if (!content) {
+      return NextResponse.json({ success: false, error: "Content is required" }, { status: 400 });
+    }
 
-    return NextResponse.json({ success: true });
+    await db.update(forms).set({ content }).where(eq(forms.id, Number(formId)));
+
+    return NextResponse.json({ success: true, message: "Form updated successfully" });
   } catch (error) {
-    console.log(error)
-    return NextResponse.json({ success: false, error: "Failed to update form" });
+    console.error("Error updating form:", error);
+    return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
   }
 }
