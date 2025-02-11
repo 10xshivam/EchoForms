@@ -6,7 +6,7 @@ import { eq } from "drizzle-orm";
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const shareId = searchParams.get("shareableLink");
+    const shareId = searchParams.get("shareId");
 
     if (!shareId) {
       return NextResponse.json({ success: false, error: "No link provided" });
