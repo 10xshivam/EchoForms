@@ -204,7 +204,6 @@ export default function FormDetail() {
         <Link href={`/form/submit/${shareId}`}>
         <Button>Live Preview</Button>
         </Link>
-        <Button>Share</Button>
         </div>
       </div>
       <form
