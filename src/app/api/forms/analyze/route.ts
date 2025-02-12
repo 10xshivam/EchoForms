@@ -46,7 +46,6 @@ export async function GET(req: NextRequest) {
   }
 }
 
-
 async function generateAIContent(description: string, responses: object[]) {
   const prompt = `
     You are an AI data analyst. Here is a dataset of form responses:
@@ -58,7 +57,7 @@ async function generateAIContent(description: string, responses: object[]) {
     - Provide sentiment analysis.
     - Suggest actionable insights and improvements.
 
-    Return a structured JSON with:
+    Generate a valid JSON response without formatting it as a code block. Do not include "json" or triple backticks. Return raw JSON only.
     {
       "summary": "string",
       "keyFindings": ["string"],
@@ -72,5 +71,6 @@ async function generateAIContent(description: string, responses: object[]) {
   `;
 
   const result = await model.generateContent(prompt);
-  return result.response.text();
+  const cleanedResponse = result.response.text().replace(/```json|```/g, "").trim();
+    return JSON.parse(cleanedResponse);
 }
