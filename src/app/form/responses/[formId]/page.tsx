@@ -98,8 +98,8 @@ export default function FormResponses() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Response ID</TableHead>
-              <TableHead>Submitted At</TableHead>
+              <TableHead>ID</TableHead>
+              <TableHead>SUBMITTED AT</TableHead>
               {responses[0] &&
                 Object.keys(responses[0].content).map((key) => (
                   <TableHead key={key}>{key.toLocaleUpperCase()}</TableHead>
