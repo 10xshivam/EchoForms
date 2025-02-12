@@ -43,7 +43,6 @@ export default function AnalyzeForm() {
       try {
         const response = await axios.get(`/api/forms/analyze?formId=${formId}`);
         if (response.data.success) {
-            console.log(response.data)
           setAnalysis(response.data.analysis);
         } else {
           setError(response.data.message || "Failed to fetch analysis");

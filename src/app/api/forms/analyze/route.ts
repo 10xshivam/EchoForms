@@ -37,7 +37,6 @@ export async function GET(req: NextRequest) {
     `;
 
     const aiAnalysis = await generateAIContent(description, formattedResponses as object[]);
-    console.log(aiAnalysis)
 
     return NextResponse.json({ success: true, analysis: aiAnalysis });
   } catch (error) {
