@@ -101,7 +101,7 @@ export default function MyForms() {
             <Separator />
           </CardContent>
           <CardFooter>
-            <Link href={`/form/edit-form/${form.id}`}>
+            <Link href={`/form/edit/${form.id}`}>
               <Button variant="outline" className="mr-2">
                 Edit
               </Button>

@@ -31,6 +31,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     const submissionContent: SubmissionContent = {};
 
     for (const [key, value] of formData.entries()) {
+      if (key === "formFields") continue; 
       if (value instanceof Blob) {
         const fileName = `${Date.now()}_${value.name}`;
         const filePath = `/temp/${fileName}`;
