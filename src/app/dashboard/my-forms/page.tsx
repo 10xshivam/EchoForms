@@ -27,7 +27,7 @@ interface FormData {
   ownerId: string;
   shareUrl: string;
   published: boolean;
-  createdAt: string; // ISO date format
+  createdAt: string; 
   content: {
     formTitle: string;
     formHeading: string;
@@ -58,13 +58,28 @@ export default function MyForms() {
 
   const copyToClipboard = async (url: string) => {
     try {
-      await navigator.clipboard.writeText(url); // ✅ Copy the actual URL
+      await navigator.clipboard.writeText(url);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 3000);
     } catch (error) {
       console.error("Failed to copy:", error);
     }
   };
+
+  const onDelete = async (formId:number) => {
+    try {
+      const res = await axios.delete(`/api/forms/delete?formId=${formId}`);
+      const data = await res?.data;
+      if (data.success) {
+        fetchForm()
+        console.log("Form deleted successfully");
+      } else {
+        console.error("Error:", data.error);
+      }
+    } catch (error) {
+      console.error("Failed to fetch form:", error);
+    }
+  }
   
 
   if (!forms) {
@@ -92,7 +107,7 @@ export default function MyForms() {
               </Button>
             </Link>
             <Dialog>
-              <DialogTrigger>
+              <DialogTrigger asChild>
                 <Button variant="outline">Share</Button>
               </DialogTrigger>
               <DialogContent>
@@ -114,6 +129,7 @@ export default function MyForms() {
                 </div>
               </DialogContent>
             </Dialog>
+            <Button variant="outline" onClick={()=>onDelete(form.id)}>Delete</Button>
           </CardFooter>
         </Card>
       ))}

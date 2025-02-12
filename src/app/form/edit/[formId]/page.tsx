@@ -189,7 +189,7 @@ export default function FormDetail() {
     <div className="relative w-full min-h-screen flex flex-col pt-28">
       <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
         <Link
-          href={"/"}
+          href={"/dashboard"}
           className=" py-2 px-3 rounded-lg flex justify-center items-center"
         >
           <ChevronLeft
@@ -197,7 +197,7 @@ export default function FormDetail() {
             size={20}
             strokeWidth={2}
           />{" "}
-          Home
+          Dashboard
         </Link>
         <div className="flex gap-x-3">
         <ThemeToggle />

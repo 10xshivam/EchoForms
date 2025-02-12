@@ -49,7 +49,7 @@ export function CreateForm() {
       const response = await axios.post("/api/forms/create", data);
       const formId = response?.data?.formId;
       if (formId) {
-        router.push(`/edit-form/${formId}`);
+        router.push(`/form/edit/${formId}`);
         toast.success("Form created successfully");
       } else {
         throw new Error("Form ID not found.");
