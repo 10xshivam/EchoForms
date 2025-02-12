@@ -9,7 +9,7 @@ interface SubmissionContent {
   [key: string]: string | null; 
 }
 
-export async function POST(req: NextRequest): Promise<NextResponse> {
+export async function POST(req: NextRequest){
   try {
     const formData = await req.formData();
     const { searchParams } = new URL(req.url);

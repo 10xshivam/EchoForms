@@ -77,7 +77,7 @@ export default function ShareUrl() {
 
       Object.entries(formData).forEach(([key, value]) => {
         if (value instanceof File) {
-          formPayload.append(key, value); // Append file
+          formPayload.append(key, value); 
         } else {
           formPayload.append(key, value);
         }
