@@ -38,7 +38,7 @@ export const submissions = pgTable("submissions", {
 export const subscriptions = pgTable("subscriptions", {
   id: serial("id").primaryKey(),
   userId: text("user_id").notNull().unique().references(() => users.id, { onDelete: "cascade" }),
-  subscribed: boolean("subscribed").default(false),
+  plan: text("plan").notNull().default("basic"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow().$default(() => new Date()),
 });
