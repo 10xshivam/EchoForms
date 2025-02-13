@@ -15,6 +15,9 @@ export const users = pgTable("users", {
   email: text("email").notNull().unique(),
   password: text("password"),
   image: text("image"),
+  plan: text("plan").default("free"), 
+  createdForms: integer("created_forms").default(0),
+  totalSubmissions: integer("total_submissions").default(0),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -35,12 +38,6 @@ export const submissions = pgTable("submissions", {
   content: jsonb("content").notNull(),
 });
 
-export const subscriptions = pgTable("subscriptions", {
-  id: serial("id").primaryKey(),
-  userId: text("user_id").notNull().unique().references(() => users.id, { onDelete: "cascade" }),
-  plan: text("plan").notNull().default("basic"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow().$default(() => new Date()),
-});
+
 
 

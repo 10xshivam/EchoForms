@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { db } from "@/db";
-import { subscriptions } from "@/db/schema";
+import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function POST(req: NextRequest) {
@@ -35,9 +35,9 @@ console.log("Expected Signature:", expectedSignature);
 
       console.log(userId)
       const added = await db
-        .update(subscriptions)
-        .set({ plan, updatedAt: new Date() })
-        .where(eq(subscriptions.userId, String(userId)))
+        .update(users)
+        .set({plan})
+        .where(eq(users.id, String(userId)))
         .returning();
 
         if(added){
