@@ -49,6 +49,11 @@ export async function POST(req: NextRequest){
       content: submissionContent,
     });
 
+    await db
+    .update(forms)
+    .set({ submissions: (form[0].submissions ?? 0) + 1 })
+    .where(eq(forms.id, form[0].id));
+
     return NextResponse.json({
       success: true,
       message: "Response submitted successfully",
