@@ -14,6 +14,7 @@ import User from "@/components/User";
 import Link from "next/link";
 import { useState } from "react";
 import { CreateForm } from "@/components/CreateForm";
+import PlanUsage from "@/components/PlanUsage";
 
 const options = [
   {
@@ -70,6 +71,7 @@ export default function Dashboard() {
               <span>{option.name}</span>
             </div>
           ))}
+          <PlanUsage/>
         </div>
       </div>
       <div className="w-full px-2 flex flex-col">
