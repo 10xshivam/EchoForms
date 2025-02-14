@@ -63,7 +63,7 @@ const ReviewCard = ({
         // light styles
         " bg-zinc-950/[.01] hover:bg-zinc-950/[.05]",
         // dark styles
-        "dark:border-zinc-800/50 dark:bg-zinc-50/[.10] dark:hover:bg-zinc-50/[.15]",
+        "dark:border-zinc-800/50 dark:bg-zinc-800/50 dark:hover:bg-zinc-50/[.15]",
       )}
     >
       <div className="flex flex-row items-center gap-2">

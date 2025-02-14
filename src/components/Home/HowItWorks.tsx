@@ -54,7 +54,7 @@ export default function HowItWorks({ className }: { className?: string }) {
       ref={containerRef}
     >
         <div ref={div6Ref} className="bg-zinc-700 z-40 rounded-xl p-5">
-          <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-black to-black/70 dark:from-white dark:to-white/70 bg-clip-text text-transparent">
+          <h2 className="text-6xl font-bold tracking-tighter bg-gradient-to-b from-black to-black/70 dark:from-white dark:to-white/70 bg-clip-text text-transparent">
             How it works ?
           </h2>
         </div>
