@@ -12,51 +12,19 @@ import {
   ArrowUpRight,
   Bot,
   Cable,
-  ChartColumn,
   ChartSpline,
   Check,
   ChevronRight,
   FileDown,
   QrCode,
-  Share2,
   Sparkles,
-  SquarePen,
-  Zap,
 } from "lucide-react";
 import { pricingPlans } from "@/lib/data";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import HowItworks from "@/components/HowItWorks";
 
-const howItWorks = [
-  {
-    step: 1,
-    title: "Describe Your Form",
-    description:
-      "Simply type what kind of form you need—whether it's a survey, registration form, or feedback form. EchoForms understands your needs instantly.",
-    icon: <SquarePen />,
-  },
-  {
-    step: 2,
-    title: "AI Generates It",
-    description:
-      "Our powerful AI builds a fully functional form in seconds, structured exactly as you described—no coding, no drag-and-drop required.",
-    icon: <Zap />,
-  },
-  {
-    step: 3,
-    title: "Share & Embed",
-    description:
-      "Get a shareable link or embed it anywhere—your website, Notion, or any platform. Start collecting responses instantly.",
-    icon: <Share2 />,
-  },
-  {
-    step: 4,
-    title: "Analyze Responses",
-    description:
-      "View and manage responses in real time with our intuitive dashboard. Export data or integrate with Notion, Zapier, and Google Sheets.",
-    icon: <ChartColumn />,
-  },
-];
+
 
 const features = [
   {
@@ -229,38 +197,8 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-center items-center gap-10 pb-32">
-        <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-black to-black/70 dark:from-white dark:to-white/70 bg-clip-text text-transparent">
-          How it works ?
-        </h2>
-        <div className="w-full flex flex-col items-center justify-center  gap-7 max-md:pt-10 max-md:px-7 max-md:gap-6">
-          {howItWorks.map((step) => (
-            <div
-              key={step.step}
-              className="group relative overflow-hidden rounded-2xl bg-zinc-800/20 dark:bg-zinc-900 p-6 transition-all hover:bg-zinc-900/20 dark:hover:bg-zinc-800/80 max-md:p-5"
-            >
-              <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-              <div className="flex gap-6 max-md:flex-col max-md:gap-2">
-                <div>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-500/10">
-                    {step.icon}
-                  </div>
-                </div>
-                <div>
-                  <div className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
-                    Step {step.step}
-                  </div>
-                  <h3 className="mt-2 text-xl font-medium text-black dark:text-white max-md:text-[1.3rem]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-base leading-relaxed text-zinc-500 dark:text-zinc-400  max-w-3xl max-md:leading-5 max-md:text-[0.9rem]">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="w-full flex justify-center items-center px-40 pb-32">
+          <HowItworks/>
       </div>
       <div className="flex flex-col justify-center items-center gap-10 pb-32">
         <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-black to-black/70 dark:from-white dark:to-white/70 bg-clip-text text-transparent">
