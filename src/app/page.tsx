@@ -143,7 +143,7 @@ export default function Home() {
         </div>
       </div>
       <div className="w-full flex flex-col justify-center items-center gap-10 pb-32 px-40">
-        <h2 className="text-6xl font-semibold tracking-tighter bg-gradient-to-b from-black to-black/70 dark:from-white dark:to-white/70 bg-clip-text text-transparent pb-1">
+        <h2 className="text-7xl font-semibold tracking-tighter bg-gradient-to-b from-black to-black/70 dark:from-white dark:to-white/70 bg-clip-text text-transparent pb-1.5">
           Why EchoForms ?
         </h2>
         <div className="bg-zinc-900/60 w-full rounded-2xl p-10">
@@ -162,17 +162,17 @@ export default function Home() {
                 matters.
               </p>
               <button className="mt-[1.6rem] bg-zinc-800 text-white h-12 text-lg  hover:bg-zinc-900 rounded-lg px-7">
-                See Live Demo
+                Preview Your Form
                 <ChevronRight className="ml-3 inline" size={20} />
               </button>
             </div>
-            <div className="h-[400px] pt-10">
+            <div className="h-[400px] pt-10 ">
               <PinContainer title="/echoforms.com">
                 <div className="flex basis-full flex-col p-2 tracking-tight text-slate-100/50 sm:basis-1/2 w-[22rem] items-center ">
                   <h3 className="font-bold text-xl text-white/90">
                     Feedback Form
                   </h3>
-                  <h4 className="text-white/20 text-lg my-1 ">
+                  <h4 className="text-white/40 text-base my-1 ">
                     We value your feedback
                   </h4>
                   <div className="w-full max-w-md">
@@ -198,7 +198,7 @@ export default function Home() {
                     />
                     <Button
                       type="submit"
-                      className="w-full bg-blue-600 text-white hover:bg-blue-700"
+                      className="w-full bg-zinc-700 text-white hover:bg-zinc-800"
                     >
                       Submit
                     </Button>
