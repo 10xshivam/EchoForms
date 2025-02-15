@@ -1,5 +1,5 @@
 "use client";
-import { Copyright, Github, Twitter } from "lucide-react";
+import { Copyright } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -29,9 +29,9 @@ export default function Footer() {
             EchoForms
           </span>
         </div>
-        <p className="text-sm max-md:text-[0.7rem] max-md:leading-3 text-black dark:text-white/50 mb-0.5">
+        <p className="text-sm max-md:text-[0.7rem] max-md:leading-3 text-black dark:text-white/50 mb-1">
           <Copyright
-            className=" mr-1 text-black dark:text-white/50 inline"
+            className="mr-1 text-black dark:text-white/50 inline"
             size={15}
           />
           2025 EchoForms Private Limited.
@@ -41,65 +41,61 @@ export default function Footer() {
         </p>
       </div>
       <div className="flex gap-20">
-
-      <div>
-        <p className="font-bold">PAGES</p>
-        <div className="flex flex-col dark:text-white/50">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm hover:text-blue-500 transition-colors duration-200"
-            >
-              {link.name}
-            </Link>
-          ))}
+        <div>
+          <p className="font-bold">PAGES</p>
+          <div className="flex flex-col dark:text-white/50">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-sm hover:text-blue-500 transition-colors duration-200"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-      <div>
-        <p className="font-bold">LEGAL</p>
-        <div className="flex flex-col dark:text-white/50">
-          
+        <div>
+          <p className="font-bold">LEGAL</p>
+          <div className="flex flex-col dark:text-white/50">
             <Link
-              href={'/privacy-policy'}
+              href={"/privacy-policy"}
               className="text-sm hover:text-blue-500 transition-colors duration-200"
             >
               Privacy Policy
-              </Link>
+            </Link>
             <Link
-              href={'/privacy-policy'}
+              href={"/privacy-policy"}
               className="text-sm hover:text-blue-500 transition-colors duration-200"
             >
               Terms and Conditions
-              </Link>
+            </Link>
+          </div>
         </div>
-      </div>
-      <div>
-        <p className="font-bold">CONNECT</p>
-        <div className="flex flex-col dark:text-white/50">
-          
+        <div>
+          <p className="font-bold">CONNECT</p>
+          <div className="flex flex-col dark:text-white/50">
             <Link
-              href={'/privacy-policy'}
+              href={"/privacy-policy"}
               className="text-sm hover:text-blue-500 transition-colors duration-200"
             >
               Github
-              </Link>
+            </Link>
             <Link
-              href={'/privacy-policy'}
+              href={"/privacy-policy"}
               className="text-sm hover:text-blue-500 transition-colors duration-200"
             >
               LinkedIn
-              </Link>
+            </Link>
             <Link
-              href={'/privacy-policy'}
+              href={"/privacy-policy"}
               className="text-sm hover:text-blue-500 transition-colors duration-200"
             >
               Twitter
-              </Link>
+            </Link>
+          </div>
         </div>
       </div>
-      </div>
-      
     </div>
   );
 }

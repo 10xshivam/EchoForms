@@ -96,7 +96,6 @@ export default function HowItWorks({ className }: { className?: string }) {
         duration={5}
         gradientStartColor={"#ffffff"}
         gradientStopColor={"#b5b5b5"}
-        reverse={true}
       />
       <AnimatedBeam
         containerRef={containerRef}
@@ -106,7 +105,6 @@ export default function HowItWorks({ className }: { className?: string }) {
         duration={5}
         gradientStartColor={"#ffffff"}
         gradientStopColor={"#b5b5b5"}
-        reverse={true}
       />
       <AnimatedBeam
         containerRef={containerRef}
@@ -116,7 +114,6 @@ export default function HowItWorks({ className }: { className?: string }) {
         duration={5}
         gradientStartColor={"#ffffff"}
         gradientStopColor={"#b5b5b5"}
-        reverse={true}
       />
       <AnimatedBeam
         containerRef={containerRef}
@@ -126,7 +123,6 @@ export default function HowItWorks({ className }: { className?: string }) {
         duration={5}
         gradientStartColor={"#ffffff"}
         gradientStopColor={"#b5b5b5"}
-        reverse={true}
       />
     </div>
   );
