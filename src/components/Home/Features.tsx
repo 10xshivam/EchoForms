@@ -50,44 +50,32 @@ const features = [
 export default function Features() {
   return (
     <div className=" w-full rounded-2xl p-10">
-      <div className="flex flex-col w-full pb-5">
-        <div>
-          <h3 className="text-7xl text-center font-bold tracking-tight bg-gradient-to-b dark:from-white dark:to-white/50 bg-clip-text text-transparent">
-            Features That Matter !
-          </h3>
-          {/* <p className="mt-10 text-center text-zinc-500  text-lg">
-            Build dynamic, high-performing forms effortlessly. From collecting
-            customer feedback to managing registrations, EchoForms simplifies
-            every step. Automate workflows, enhance data accuracy, and ensure a
-            seamless user experience—all while integrating with the tools you
-            rely on. Designed for speed, flexibility, and efficiency, so you can
-            focus on what truly matters.
-          </p> */}
-          {/* <button className="mt-[1.6rem] bg-zinc-800 text-white h-12 text-lg  hover:bg-zinc-900 rounded-lg px-6">
-            Create Your First Form
-            <ChevronRight className="ml-3 inline" size={20} />
-          </button> */}
-        </div>
+      <div className="p-8 border w-fit">
+        <h3 className="text-7xl text-center font-bold tracking-tight bg-gradient-to-b dark:from-white dark:to-white/50 bg-clip-text text-transparent">
+          Features That Matter !
+        </h3>
       </div>
-      <div className="grid grid-cols-2 gap-5 pt-8">
+      <div className="flex pt-12 h-[560px] gap-5">
+        <div className="bg-zinc-700 rounded-lg h-full w-3"></div>
+      <div className="grid grid-cols-2 gap-7 ">
         {features.map((feature, index) => (
-          <div
-            key={index}
-            className="group relative flex overflow-hidden rounded-2xl bg-zinc-900/10 dark:bg-zinc-900 p-6 transition-all hover:bg-zinc-900/20 dark:hover:bg-zinc-800/80 max-md:p-5 gap-3"
-          >
-            <div className="flex px-5 items-center justify-center rounded-xl bg-zinc-500/10">
-              {feature.icon}
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-black dark:text-white mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-sm leading-tight text-zinc-500 dark:text-zinc-400 ">
-                {feature.description}
-              </p>
+          <div key={index} className="p-4 border rounded-xl bg-zinc-700/5">
+            <div className="group relative flex overflow-hidden rounded-2xl bg-zinc-900/10 dark:bg-zinc-900 p-6 transition-all hover:bg-zinc-900/20 dark:hover:bg-zinc-800/80 max-md:p-5 gap-3">
+              <div className="flex px-5 items-center justify-center rounded-xl bg-zinc-500/10">
+                {feature.icon}
+              </div>
+              <div>
+                <h3 className="text-lg font-medium text-black dark:text-white mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-sm leading-tight text-zinc-500 dark:text-zinc-400 ">
+                  {feature.description}
+                </p>
+              </div>
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
