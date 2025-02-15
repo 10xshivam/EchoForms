@@ -1,100 +1,53 @@
 "use client";
-import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
-import {
-  Calendar,
-  ChartColumn,
-  CircleFadingArrowUp,
-  House,
-  LibraryBig,
-  TextQuote,
-} from "lucide-react";
-import { format } from "date-fns";
-import User from "@/components/User";
-import Link from "next/link";
-import { useState } from "react";
-import { CreateForm } from "@/components/CreateForm";
-import PlanUsage from "@/components/PlanUsage";
 
-const options = [
-  {
-    icon: <LibraryBig />,
-    name: "My Forms",
-    url: "/my-forms",
-  },
-  {
-    icon: <TextQuote />,
-    name: "Responses",
-    url: "/responses",
-  },
-  {
-    icon: <ChartColumn />,
-    name: "Analyze",
-    url: "/analyze",
-  },
-  {
-    icon: <CircleFadingArrowUp />,
-    name: "Upgrade",
-    url: "/upgrade",
-  },
-];
+import { CreateForm } from "@/components/CreateForm";
+import Forms from "@/components/Forms";
+import Navbar from "@/components/Navbar";
+import { Separator } from "@/components/ui/separator";
+import { useUser } from "@clerk/nextjs";
+import { TextQuote } from "lucide-react";
 
 export default function Dashboard() {
-  const currentDate = format(new Date(), "MMMM dd, yyyy");
-  const [activeUrl, setActiveUrl] = useState("");
-
-  const handleOptionClick = (url:string) => {
-    setActiveUrl(url);
-  };
-
+  const { user } = useUser();
   return (
-    <div className="w-full min-h-screen flex p-4 gap-4">
-      <div className="w-60 min-h-full bg-zinc-900 rounded-xl p-4 flex-col gap-3 inline-flex">
-        <div className="flex gap-3 items-center">
-          <div className="border-2 rounded-lg p-1">
-            <Image src="/Logo.png" alt="EchoForms" width={26} height={26} />
-          </div>
-          <span className="text-2xl font-bold text-black/70 dark:text-white/70 tracking-tighter">
-            EchoForms
-          </span>
+    <div className="w-full min-h-screen pt-32">
+      <Navbar />
+      <div className="px-24">
+        <div className="flex  justify-between">
+          <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-b dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
+            Hello {user?.firstName}
+          </h2>
+          <CreateForm />
         </div>
-        <Separator />
-        <CreateForm/>
-        <div className="flex flex-col gap-3">
-          {options.map((option) => (
-            <div
-              key={option.name}
-              className="flex gap-3 items-center hover:bg-zinc-500/20 p-2 cursor-pointer rounded-lg"
-              onClick={() => handleOptionClick(option.url)}
-            >
-              {option.icon}
-              <span>{option.name}</span>
+        <div className="flex w-full mt-5 gap-5">
+          <div className="border p-7 flex flex-col gap-3 min-w-80">
+            <div className="p-2 border w-fit">
+              <TextQuote size={30} />
             </div>
-          ))}
-          <PlanUsage/>
-        </div>
-      </div>
-      <div className="w-full px-2 flex flex-col">
-        <div className="w-full h-16 flex items-center justify-between">
-          <div className="flex items-center gap-x-2">
-            <Calendar size={18} />
-            <span className="text-md text-black/70 dark:text-white/70 tracking-tight">
-              {currentDate}
-            </span>
+            <h3>TOTAL SUBMISSIONS</h3>
+            <p className="font-semibold text-4xl">0</p>
           </div>
-          <div className="flex items-center space-x-4 text-black/70 dark:text-white/70">
-            <Link href={"/"}>
-              <House />
-            </Link>
-            <Separator orientation="vertical" className="h-6" />
-            <User />
+          <div className="border p-7 flex flex-col gap-3 min-w-80">
+            <div className="p-2 border w-fit">
+              <TextQuote size={30} />
+            </div>
+            <h3>SUBMISSIONS LIMIT</h3>
+            <p className="font-semibold text-4xl">0</p>
+          </div>
+          <div className="border p-7 flex flex-col gap-3 min-w-80">
+            <div className="p-2 border w-fit">
+              <TextQuote size={30} />
+            </div>
+            <h3>FORM LIMIT</h3>
+            <p className="font-semibold text-4xl">0</p>
           </div>
         </div>
-        <Separator />
-        <div className="w-full flex-grow mt-3">
-          {activeUrl && (
-            <iframe src={`dashboard/${activeUrl}`} className="w-full h-full border-none"></iframe>
-          )}
+        <div className="pt-10">
+          <h4 className="text-3xl font-semibold mb-3">
+            Forms
+          </h4>
+          <Separator/>
+          <Forms/>
         </div>
       </div>
     </div>
