@@ -10,6 +10,7 @@ import Hero from "@/components/Home/Hero";
 import Pricing from "@/components/Home/Pricing";
 import { Faq } from "@/components/Home/Faq";
 import Testimonial from "@/components/Home/Testimonial";
+import { FinalCTA } from "@/components/Home/FinalCTA";
 
 export default function Home() {
   return (
@@ -51,6 +52,7 @@ export default function Home() {
           <Faq />
         </div>
       </div>
+      <FinalCTA/>
       <Footer />
     </div>
   );
