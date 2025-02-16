@@ -1,7 +1,7 @@
 'use client';
 
 import { Card } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import Progress from "./ui/progress";
 
 interface LimitCardProps {
   title: string;
@@ -13,15 +13,12 @@ export default function LimitCard({ title, used, limit }: LimitCardProps) {
   const percentageUsed = (used / limit) * 100;
 
   return (
-      <Card className="p-6 text-center rounded-none">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-2xl font-bold mt-2">
+      <Card className="p-7 flex flex-col gap-3 rounded-none min-w-80 items-center ">
+        <h3 className="text-lg font-semibold">{title.toUpperCase()}</h3>
+        <p className="text-3xl font-semibold my-2">
           {used} <span className="text-gray-500">/ {limit}</span>
         </p>
-        <p className="text-sm text-gray-500">{percentageUsed.toFixed(0)}% used</p>
-        <div className="mt-4">
-          <Progress value={percentageUsed} className="h-2" />
-        </div>
+        <Progress value={percentageUsed}/>
       </Card>
   );
 }

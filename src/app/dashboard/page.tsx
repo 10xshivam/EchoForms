@@ -6,10 +6,33 @@ import Navbar from "@/components/Navbar";
 import LimitCard from "@/components/LimitCard";
 import { Separator } from "@/components/ui/separator";
 import { useUser } from "@clerk/nextjs";
-import { TextQuote } from "lucide-react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
   const { user } = useUser();
+  const [usage, setUsage] = useState({
+    createdForms: 0,
+    totalSubmissions: 0,
+    plan: "Basic",
+  });
+  // const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    async function fetchUsage() {
+      const res = await axios.get(`/api/getUsage`);
+      const data = await res.data;
+      setUsage(data);
+    }
+    // async function fetchSubmissionCounts() {
+    //   const res = await axios.get(`/api/forms/submissions/today`);
+    //   const data = await res.data
+    //   console.log(data)
+    //   setCount(data);
+    // }
+    fetchUsage();
+    // fetchSubmissionCounts()
+  }, []);
   return (
     <div className="w-full min-h-screen pt-32">
       <Navbar />
@@ -20,23 +43,19 @@ export default function Dashboard() {
           </h2>
         </div>
         <div className="flex w-full mt-5 gap-5">
-          <div className="border p-7 flex flex-col gap-3 min-w-80">
-            <div className="p-2 border w-fit">
-              <TextQuote size={30} />
+          <LimitCard
+            title="Submissions limit"
+            used={usage.totalSubmissions}
+            limit={500}
+            />
+          <LimitCard title="Form limit" used={usage.createdForms} limit={5} />
+            <div className="border p-7 flex flex-col gap-3 min-w-80 items-center">
+              <h3 className="text-lg font-semibold">CURRENT PLAN</h3>
+              <p className="text-3xl font-semibold my-2">{usage.plan === "free"? "₹0" : "₹499"}</p>
+              <div className="px-[44px] py-[50px]  border-[13px] rounded-full ">
+                <p className="m-auto font-semibold text-3xl">{usage.plan}</p>
+              </div>
             </div>
-            <h3>TOTAL SUBMISSIONS</h3>
-            <p className="font-semibold text-4xl">0</p>
-          </div>
-          {/* <div className="border p-7 flex flex-col gap-3 min-w-80">
-            <div className="p-2 border w-fit">
-              <TextQuote size={30} />
-            </div>
-            <h3>SUBMISSIONS LIMIT</h3>
-            <p className="font-semibold text-4xl">0</p>
-          </div> */}
-          <LimitCard title="Submissions limit" used={2} limit={100}/>
-          <LimitCard title="Form limit" used={2} limit={10}/>
-          
         </div>
         <div className="pt-10">
           <div className="flex justify-between items-center mb-3">

@@ -1,7 +1,7 @@
 import { Webhook } from "svix";
 import { NextResponse } from "next/server";
 import { db } from "@/db";
-import { subscriptions, users } from "@/db/schema";
+import { users } from "@/db/schema";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 
@@ -61,11 +61,7 @@ export async function POST(req: Request) {
         name: first_name || "Unknown",
         email,
         image: image_url || "https://default-avatar.com/avatar.png",
-      });
-
-      await db.insert(subscriptions).values({
-        userId: id,
-        plan:"basic"
+        plan:"Basic"
       });
 
       console.log("User created successfully in database:", { id, email });

@@ -1,28 +1,57 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as ProgressPrimitive from "@radix-ui/react-progress"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+interface ProgressProps {
+  value: number; // Percentage value (0-100)
+}
 
-const Progress = React.forwardRef<
-  React.ElementRef<typeof ProgressPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
->(({ className, value, ...props }, ref) => (
-  <ProgressPrimitive.Root
-    ref={ref}
-    className={cn(
-      "relative h-11 w-full overflow-hidden rounded-full bg-primary/20",
-      className
-    )}
-    {...props}
-  >
-    <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-primary transition-all"
-      style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
-    />
-  </ProgressPrimitive.Root>
-))
-Progress.displayName = ProgressPrimitive.Root.displayName
+const Progress: React.FC<ProgressProps> = ({ value }) => {
+  const strokeDasharray = 100;
+  const strokeDashoffset = strokeDasharray - (value / 100) * strokeDasharray;
 
-export { Progress }
+  return (
+    <div className="relative size-40 flex items-center justify-center">
+      <svg
+        className="size-full rotate-180"
+        viewBox="0 0 36 36"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {/* Background Circle */}
+        <circle
+          cx="18"
+          cy="18"
+          r="16"
+          fill="none"
+          className="stroke-current text-gray-200 dark:text-neutral-700"
+          strokeWidth="3"
+          strokeDasharray={strokeDasharray}
+        />
+        {/* Progress Circle */}
+        <circle
+          cx="18"
+          cy="18"
+          r="16"
+          fill="none"
+          className="stroke-current text-blue-600 dark:text-blue-500 transition-all duration-500"
+          strokeWidth="3"
+          strokeDasharray={strokeDasharray}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
+        />
+      </svg>
+      {/* Center Text */}
+      <div className="absolute text-center">
+        <span className="text-2xl font-bold text-blue-600 dark:text-blue-500">
+          {value}%
+        </span>
+        <span className="text-xs text-gray-600 dark:text-gray-400 block">
+          used
+        </span>
+      </div>
+    </div>
+  );
+};
+
+export default Progress;
+

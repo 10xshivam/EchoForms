@@ -15,7 +15,7 @@ export const users = pgTable("users", {
   email: text("email").notNull().unique(),
   password: text("password"),
   image: text("image"),
-  plan: text("plan").default("free"), 
+  plan: text("plan").default("Basic"), 
   createdForms: integer("created_forms").default(0),
   totalSubmissions: integer("total_submissions").default(0),
   createdAt: timestamp("created_at").defaultNow(),

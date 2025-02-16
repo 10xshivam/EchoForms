@@ -17,8 +17,7 @@ export default function PlanUsage() {
 
     const upgradeToPro = () => {
         window.location.href = "/pricing"; 
-      };
-      
+    };
     
     return (
       <div>
