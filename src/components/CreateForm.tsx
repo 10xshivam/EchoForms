@@ -67,7 +67,7 @@ export function CreateForm() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="flex items-center bg-zinc-700/40 hover:bg-zinc-500/20 cursor-pointer pl-3 pr-4 gap-1 rounded-lg">
+        <div className="flex items-center bg-zinc-700/40 hover:bg-zinc-500/20 cursor-pointer pl-3 pr-4 gap-1 py-2 rounded-lg">
           <Plus className="inline"  />
           <span>Create new form</span>
         </div>

@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Check, Clipboard, Eye, Pencil, Share2, Trash2 } from "lucide-react";
+import { Check, Clipboard, Code, Eye, Pencil, Share2, Trash2 } from "lucide-react";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { Button } from "./ui/button";
 
@@ -130,6 +130,10 @@ export default function Forms() {
                   </DialogContent>
                 </Dialog>
 
+                <div className="border p-2">
+                      <Code size={20} />
+                    </div>
+
                 <Dialog>
                   <DialogTrigger asChild>
                     <div className="border p-2">
@@ -173,6 +177,9 @@ export default function Forms() {
           <CardFooter className="flex justify-between">
             <p>{form.submissions} Submissions</p>
             <div className="flex gap-2">
+              <Link href={`/form/responses/${form.id}`}>
+                <Button variant={"outline"}>Email Notifications</Button>
+              </Link>
               <Link href={`/form/responses/${form.id}`}>
                 <Button variant={"outline"}>View All Submissions</Button>
               </Link>
