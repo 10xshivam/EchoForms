@@ -23,6 +23,7 @@ import {
 import { Check, Clipboard, Code, Eye, Pencil, Share2, Trash2 } from "lucide-react";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { Button } from "./ui/button";
+import EmailNotificationToggle from "./EmailNotificationToggle";
 
 interface FormData {
   id: number;
@@ -31,6 +32,7 @@ interface FormData {
   published: boolean;
   createdAt: string;
   submissions: number;
+  receiveSubmissionEmails:boolean
   content: {
     formTitle: string;
     formHeading: string;
@@ -177,9 +179,7 @@ export default function Forms() {
           <CardFooter className="flex justify-between">
             <p>{form.submissions} Submissions</p>
             <div className="flex gap-2">
-              <Link href={`/form/responses/${form.id}`}>
-                <Button variant={"outline"}>Email Notifications</Button>
-              </Link>
+              <EmailNotificationToggle formId={form.id} enable={form.receiveSubmissionEmails} />
               <Link href={`/form/responses/${form.id}`}>
                 <Button variant={"outline"}>View All Submissions</Button>
               </Link>
