@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm";
 import { writeFile } from "fs/promises";
 import path from "path";
 import { currentUser } from "@clerk/nextjs/server";
+import { sendEmail } from "@/lib/mail";
 
 interface SubmissionContent {
   [key: string]: string | null;
@@ -82,6 +83,14 @@ export async function POST(req: NextRequest) {
       .update(users)
       .set({ totalSubmissions: totalSubmissions + 1 })
       .where(eq(users.id, user[0].id));
+
+      if (form[0].receiveSubmissionEmails) {
+        await sendEmail({
+          to: user[0].email, 
+          subject: "New Form Submission",
+          body: `You have received a new submission for your form: ${form[0].shareUrl}`,
+        });
+      }
 
     return NextResponse.json({
       success: true,

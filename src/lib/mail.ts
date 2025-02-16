@@ -11,7 +11,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function sendEmail({ to, subject, body }:sendEmailInterface) {
   try {
     await resend.emails.send({
-      from: "no-reply@yourapp.com",
+      from: "Echoforms@resend.dev",
       to,
       subject,
       text: body,
