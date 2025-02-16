@@ -29,6 +29,7 @@ export const forms = pgTable("forms", {
   content: jsonb("content").notNull(),
   submissions: integer("submissions").default(0),
   shareUrl: uuid("share_url").defaultRandom(),
+  receiveSubmissionEmails: boolean("receive_submission_emails").default(false),
 });
 
 export const submissions = pgTable("submissions", {

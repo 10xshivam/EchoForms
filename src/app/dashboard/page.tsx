@@ -52,8 +52,8 @@ export default function Dashboard() {
             <div className="border p-7 flex flex-col gap-3 min-w-80 items-center">
               <h3 className="text-lg font-semibold">CURRENT PLAN</h3>
               <p className="text-3xl font-semibold my-2">{usage.plan === "free"? "₹0" : "₹499"}</p>
-              <div className="px-[44px] py-[50px]  border-[13px] rounded-full ">
-                <p className="m-auto font-semibold text-3xl">{usage.plan}</p>
+              <div className="px-[44px] py-[50px]  border-[13px] border-zinc-700 rounded-full ">
+                <p className="m-auto font-semibold text-3xl">{usage.plan === "free"? "Free" : "Pro"}</p>
               </div>
             </div>
         </div>
