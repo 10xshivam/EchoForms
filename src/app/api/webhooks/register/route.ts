@@ -43,7 +43,6 @@ export async function POST(req: Request) {
         return new Response("Missing email", { status: 400 });
       }
 
-      // Check if the user already exists in the database
       const existingUser = await db
         .select()
         .from(users)
@@ -55,7 +54,6 @@ export async function POST(req: Request) {
         return new Response("User already exists", { status: 409 });
       }
 
-      // Insert user into database
       await db.insert(users).values({
         id,
         name: first_name || "Unknown",

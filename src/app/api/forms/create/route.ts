@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     const isPro = user[0].plan === "pro";
     const createdForms = user[0].createdForms ?? 0;
 
-    if (!isPro && createdForms >= 10) {
+    if (!isPro && createdForms >= 5) {
       return NextResponse.json(
         { error: "Free plan limit reached. Upgrade to Pro!" },
         { status: 403 }

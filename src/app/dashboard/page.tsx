@@ -46,14 +46,14 @@ export default function Dashboard() {
           <LimitCard
             title="Submissions limit"
             used={usage.totalSubmissions}
-            limit={500}
-            />
-          <LimitCard title="Form limit" used={usage.createdForms} limit={5} />
+            limit={usage.plan === "Basic" ? 500 : 50000}
+            /> 
+          <LimitCard title="Form limit" used={usage.createdForms} limit={usage.plan === "Basic" ? 5 : 50} />
             <div className="border p-7 flex flex-col gap-3 min-w-80 items-center">
               <h3 className="text-lg font-semibold">CURRENT PLAN</h3>
               <p className="text-3xl font-semibold my-2">{usage.plan === "free"? "₹0" : "₹499"}</p>
               <div className="px-[44px] py-[50px]  border-[13px] border-zinc-700 rounded-full ">
-                <p className="m-auto font-semibold text-3xl">{usage.plan === "free"? "Free" : "Pro"}</p>
+                <p className="m-auto font-semibold text-3xl">{usage.plan === "Basic" ? "Basic" : "Pro"}</p>
               </div>
             </div>
         </div>

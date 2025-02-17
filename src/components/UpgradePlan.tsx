@@ -1,8 +1,7 @@
-"use client"
+"use client";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
-
-
+import { Button } from "./ui/button";
 
 interface RazorpayOptions {
   key: string;
@@ -19,10 +18,10 @@ interface RazorpayOptions {
   };
 }
 
-export default function PaymentPage() {
+export default function UpgradePlan() {
   const [razorpayLoaded, setRazorpayLoaded] = useState(false);
   const { user } = useUser();
-  
+
   useEffect(() => {
     const loadRazorpay = async () => {
       if (typeof window !== "undefined") {
@@ -35,7 +34,7 @@ export default function PaymentPage() {
     };
     loadRazorpay();
   }, []);
-  
+
   if (!user) {
     return null;
   }
@@ -46,11 +45,11 @@ export default function PaymentPage() {
       return;
     }
 
-    const userId = user.id; 
+    const userId = user.id;
     const response = await fetch("/api/payment/order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId, amount: 499 }), 
+      body: JSON.stringify({ userId, amount: 499 }),
     });
 
     const data = await response.json();
@@ -59,21 +58,23 @@ export default function PaymentPage() {
       return;
     }
 
-    const options:RazorpayOptions = {
+    const options: RazorpayOptions = {
       key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
       amount: data.order.amount,
       currency: "INR",
       name: "EchoForms",
       description: "Test Transaction",
-      order_id: data.order.id, 
+      order_id: data.order.id,
       handler: async function (response: Record<string, unknown>) {
         console.log("Payment Success:", response);
       },
       notes: { userId },
-      theme: { color: "#18181B"},
+      theme: { color: "#18181B" },
     };
 
-    const Razorpay = (window as { Razorpay?: new (options: RazorpayOptions) => unknown }).Razorpay;
+    const Razorpay = (
+      window as { Razorpay?: new (options: RazorpayOptions) => unknown }
+    ).Razorpay;
 
     if (!Razorpay) {
       console.error("Razorpay SDK not loaded");
@@ -82,19 +83,11 @@ export default function PaymentPage() {
 
     const razorpay = new Razorpay(options);
     (razorpay as { open: () => void }).open();
-  
-   
-    
-};
+  };
 
   return (
-    <div>
-      <h2>Pay with Razorpay</h2>
-      <button onClick={handlePayment} disabled={!razorpayLoaded}>
-        Pay Now
-      </button>
-    </div>
+    <Button className="w-full" onClick={handlePayment} disabled={!razorpayLoaded}>
+      Upgrade to pro
+    </Button>
   );
 }
-
-

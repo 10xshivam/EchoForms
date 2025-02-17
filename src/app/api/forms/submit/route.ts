@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
     const isPro = user[0].plan === "pro";
     const totalSubmissions = user[0].totalSubmissions ?? 0;
 
-    if (!isPro && totalSubmissions >= 100) {
+    if (!isPro && totalSubmissions >= 500) {
       return NextResponse.json(
         { error: "Free plan submission limit reached. Upgrade to Pro!" },
         { status: 403 }

@@ -11,14 +11,9 @@ export async function POST(req: NextRequest) {
     const body = await req.text();
     console.log("Webhook triggered")
 
-    // Verify webhook signature
     const expectedSignature = crypto.createHmac("sha256", webhookSecret)
       .update(body)
       .digest("hex");
-
-      console.log("Received Razorpay Signature:", razorpaySignature);
-console.log("Expected Signature:", expectedSignature);
-
 
     if (expectedSignature !== razorpaySignature) {
       return NextResponse.json({ success: false, message: "Invalid webhook signature" }, { status: 400 });
@@ -27,11 +22,10 @@ console.log("Expected Signature:", expectedSignature);
     const payload = JSON.parse(body);
     if (payload.event === "payment.captured") {
       const userId = payload.payload.payment.entity.notes.userId;
-      const amountPaid = payload.payload.payment.entity.amount / 100; // Convert paise to INR
+      const amountPaid = payload.payload.payment.entity.amount / 100; 
 
-      // Determine plan based on payment amount
       let plan;
-      if (amountPaid === 499) plan = "pro";
+      if (amountPaid === 499) plan = "Pro";
 
       console.log(userId)
       const added = await db

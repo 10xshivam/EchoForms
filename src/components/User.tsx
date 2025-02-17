@@ -12,10 +12,26 @@ import { useClerk, useUser } from "@clerk/nextjs";
 import { ThemeToggle } from "./ThemeToggle";
 import { LogOut } from "lucide-react";
 import { Button } from "./ui/button";
+import UpgradePlan from "./UpgradePlan";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function User() {
   const { user } = useUser();
   const { signOut } = useClerk();
+  const [usage, setUsage] = useState({
+      createdForms: 0,
+      totalSubmissions: 0,
+      plan: "Basic",
+    })
+  useEffect(() => {
+    async function fetchUsage() {
+      const res = await axios.get(`/api/getUsage`);
+      const data = await res.data;
+      setUsage(data);
+    }
+    fetchUsage();
+  }, []);
   if (!user) {
     return null;
   }
@@ -46,7 +62,10 @@ export default function User() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <Button className="w-full">Upgrade to Pro</Button>
+          {usage.plan === "Basic" ?
+          <UpgradePlan/>:
+          <Button className="w-full">Pro Plan</Button>
+          }
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
