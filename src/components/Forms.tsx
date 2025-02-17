@@ -24,6 +24,7 @@ import { Check, Clipboard, Code, Eye, Pencil, Share2, Trash2 } from "lucide-reac
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { Button } from "./ui/button";
 import EmailNotificationToggle from "./EmailNotificationToggle";
+import QrCodeGenerator from "./QrCodeGenerator";
 
 interface FormData {
   id: number;
@@ -144,25 +145,32 @@ export default function Forms() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>Copy url</DialogTitle>
+                      <DialogTitle>Copy URL</DialogTitle>
                     </DialogHeader>
-                    <div className="bg-zinc-900 p-3 rounded w-full relative">
-                      <code className="text-sky-500 text-lg">{`${window.location.origin}/form/submit/${form.shareUrl}`}</code>
+                    <div className="bg-zinc-900 p-3 rounded-lg w-full">
+                      <code className="text-sky-500 text-sm">{`${window.location.origin}/form/submit/${form.shareUrl}`}</code>
+                    </div>
+                  <DialogFooter>
+                    <div className="flex justify-between w-full items-center">
                       <div
-                        className="absolute inline bg-sky-500/5 p-1.5 rounded-lg top-[10px] right-3 hover:bg-sky-500/10"
-                        onClick={() =>
-                          copyToClipboard(
-                            `${window.location.origin}/form/submit/${form.shareUrl}`
-                          )
-                        }
+                      onClick={() =>
+                        copyToClipboard(
+                          `${window.location.origin}/form/submit/${form.shareUrl}`
+                        )}
+                        className="flex border py-2 px-3 justify-center items-center gap-2 rounded-lg cursor-pointer"
                       >
                         {isCopied ? (
-                          <Check className="text-sky-500 h-5 w-5" />
+                          <Check className="text-sky-500" size={20}  />
                         ) : (
-                          <Clipboard className="text-sky-500 w-5 h-5" />
+                          <Clipboard className="text-sky-500" size={20} />
                         )}
+                        <span className="text-sm font-medium">
+                          {!isCopied ? "Copy Link" : "Copied"}
+                        </span>
                       </div>
+                        <QrCodeGenerator shareUrl={form.shareUrl} />
                     </div>
+                    </DialogFooter>
                   </DialogContent>
                 </Dialog>
                 <Link href={`/form/submit/${form.shareUrl}`}>
