@@ -43,6 +43,11 @@ interface FormData {
 export default function Forms() {
   const [forms, setForms] = useState<FormData[]>([]);
   const [isCopied, setIsCopied] = useState(false);
+  const [usage, setUsage] = useState({
+    createdForms: 0,
+    totalSubmissions: 0,
+    plan: "Basic",
+  });
   const fetchForm = useCallback(async () => {
     try {
       const res = await axios.get(`/api/forms`);
@@ -59,6 +64,12 @@ export default function Forms() {
   }, []);
 
   useEffect(() => {
+    async function fetchUsage() {
+      const res = await axios.get(`/api/getUsage`);
+      const data = await res.data;
+      setUsage(data);
+    }
+    fetchUsage();
     fetchForm();
   }, [fetchForm]);
 
@@ -104,13 +115,13 @@ export default function Forms() {
               {form.content.formHeading}
               <div className=" absolute right-5 top-5 flex gap-2">
                 <Link href={`/form/edit/${form.id}`}>
-                  <div className="border p-2">
+                  <div className="border p-2 rounded-lg curser-pointer">
                     <Pencil size={20} />
                   </div>
                 </Link>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <div className="border p-2">
+                    <div className="border p-2 rounded-lg cursor-pointer">
                       <Trash2 size={20} />
                     </div>
                   </DialogTrigger>
@@ -134,7 +145,7 @@ export default function Forms() {
                 </Dialog>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <div className="border p-2">
+                    <div className="border p-2 rounded-lg cursor-pointer">
                       <Share2 size={20} />
                     </div>
                   </DialogTrigger>
@@ -169,7 +180,7 @@ export default function Forms() {
                   </DialogContent>
                 </Dialog>
                 <Link href={`/form/submit/${form.shareUrl}`}>
-                  <div className="border p-2">
+                  <div className="border p-2 rounded-lg">
                     <Eye size={20} />
                   </div>
                 </Link>
@@ -182,7 +193,9 @@ export default function Forms() {
           <CardFooter className="flex justify-between">
             <p>{form.submissions} Submissions</p>
             <div className="flex gap-2">
+            {usage.plan === "Pro" && 
               <EmailNotificationToggle formId={form.id} enable={form.receiveSubmissionEmails} />
+            }
               <Link href={`/form/responses/${form.id}`}>
                 <Button variant={"outline"}>View All Submissions</Button>
               </Link>

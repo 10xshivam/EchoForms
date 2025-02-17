@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Card } from "@/components/ui/card";
 
 export default function Dashboard() {
   const { user } = useUser();
@@ -16,7 +17,6 @@ export default function Dashboard() {
     totalSubmissions: 0,
     plan: "Basic",
   });
-  // const [count, setCount] = useState(0)
 
   useEffect(() => {
     async function fetchUsage() {
@@ -24,15 +24,9 @@ export default function Dashboard() {
       const data = await res.data;
       setUsage(data);
     }
-    // async function fetchSubmissionCounts() {
-    //   const res = await axios.get(`/api/forms/submissions/today`);
-    //   const data = await res.data
-    //   console.log(data)
-    //   setCount(data);
-    // }
     fetchUsage();
-    // fetchSubmissionCounts()
   }, []);
+  
   return (
     <div className="w-full min-h-screen pt-32">
       <Navbar />
@@ -49,13 +43,13 @@ export default function Dashboard() {
             limit={usage.plan === "Basic" ? 500 : 50000}
             /> 
           <LimitCard title="Form limit" used={usage.createdForms} limit={usage.plan === "Basic" ? 5 : 50} />
-            <div className="border p-7 flex flex-col gap-3 min-w-80 items-center">
+            <Card className="border p-7 flex flex-col gap-3 min-w-80 items-center rounded-xl">
               <h3 className="text-lg font-semibold">CURRENT PLAN</h3>
-              <p className="text-3xl font-semibold my-2">{usage.plan === "free"? "₹0" : "₹499"}</p>
-              <div className="px-[44px] py-[50px]  border-[13px] border-zinc-700 rounded-full ">
-                <p className="m-auto font-semibold text-3xl">{usage.plan === "Basic" ? "Basic" : "Pro"}</p>
+              <p className="text-3xl font-semibold my-2">{usage.plan === "free" ? "₹0" : "₹499"}</p>
+              <div className="w-[157px] h-[157px]  border-[13px] border-zinc-600 rounded-full flex justify-center items-center">
+                <p className="font-semibold text-3xl text-blue-600">{usage.plan}</p>
               </div>
-            </div>
+            </Card>
         </div>
         <div className="pt-10">
           <div className="flex justify-between items-center mb-3">
