@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Check, Clipboard, Code, Eye, Pencil, Share2, Trash2 } from "lucide-react";
+import { Check, Clipboard, Eye, Pencil, Share2, Trash2 } from "lucide-react";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { Button } from "./ui/button";
 import EmailNotificationToggle from "./EmailNotificationToggle";
@@ -132,11 +132,6 @@ export default function Forms() {
                     </DialogFooter>
                   </DialogContent>
                 </Dialog>
-
-                <div className="border p-2">
-                      <Code size={20} />
-                    </div>
-
                 <Dialog>
                   <DialogTrigger asChild>
                     <div className="border p-2">
@@ -168,7 +163,7 @@ export default function Forms() {
                           {!isCopied ? "Copy Link" : "Copied"}
                         </span>
                       </div>
-                        <QrCodeGenerator shareUrl={form.shareUrl} />
+                        <QrCodeGenerator shareUrl={`${window.location.origin}/form/submit/${form.shareUrl}`} />
                     </div>
                     </DialogFooter>
                   </DialogContent>
