@@ -97,7 +97,7 @@ export default function Signup() {
         </Link>
         <ThemeToggle />
       </div>
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md dark:bg-zinc-900/40 border-none">
         <CardHeader>
           <div className="w-fit p-3 mx-auto bg-gray-100 rounded-full dark:bg-zinc-800">
             <Image src="/Logo.png" alt="EchoForms" width={30} height={30} />

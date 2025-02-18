@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "./ui/button";
-import { Github, LayoutDashboard } from "lucide-react";
+import { Github, Home, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import User from "./User";
@@ -35,6 +35,11 @@ export default function Navbar() {
           </>
         ) : (
           <>
+            <Link href="/">
+              <Button className="bg-transparent border hover:border-none  dark:border-zinc-100/10 hover:bg-zinc-800/10  dark:hover:bg-zinc-800 text-black dark:text-white text-sm ">
+                <Home/>
+              </Button>
+            </Link>
             <Link href="/dashboard">
               <Button className="bg-transparent border hover:border-none  dark:border-zinc-100/10 hover:bg-zinc-800/10  dark:hover:bg-zinc-800 text-black dark:text-white text-sm ">
                 <LayoutDashboard />

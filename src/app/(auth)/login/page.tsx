@@ -74,9 +74,9 @@ export default function Signin() {
         </Link>
         <ThemeToggle />
       </div>
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md  dark:bg-zinc-900/40 border-none">
         <CardHeader>
-          <div className="w-fit p-3 mx-auto bg-gray-100 rounded-full dark:bg-zinc-800">
+          <div className="w-fit p-3 mx-auto bg-zinc-200 rounded-full dark:bg-zinc-800">
             <Image src="/Logo.png" alt="EchoForms" width={30} height={30} />
           </div>
           <CardTitle className="text-xl font-bold text-center">
@@ -93,6 +93,7 @@ export default function Signin() {
               <Input
                 type="email"
                 id="email"
+                placeholder="Enter your email"
                 value={emailAddress}
                 onChange={(e) => setEmailAddress(e.target.value)}
                 required
@@ -105,6 +106,7 @@ export default function Signin() {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   value={password}
+                  placeholder="Enter your password"
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
@@ -138,7 +140,7 @@ export default function Signin() {
               <div className="w-full border-t"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-background text-muted-foreground">
+              <span className="px-2 bg-background text-muted-foreground ">
                 OR
               </span>
             </div>
