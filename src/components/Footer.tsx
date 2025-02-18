@@ -11,17 +11,17 @@ const navLinks = [
   },
   {
     name: "Dashboard",
-    href: "/",
+    href: "/dashboard",
   },
   {
     name: "Pricing",
-    href: "/",
+    href: "/pricing",
   },
 ];
 
 export default function Footer() {
   return (
-    <div className="w-full py-10 border-t dark:border-white/20  items-start flex px-20 justify-between z-50 max-md:px-5">
+    <div className="w-full py-10 border-t dark:border-white/20 h-fit  items-start flex px-20 justify-between z-50 max-md:px-5">
       <div className="flex flex-col">
         <div className="flex gap-1 mb-2">
           <Image src="/Logo.png" alt="EchoForms" width={30} height={26} />
@@ -65,7 +65,7 @@ export default function Footer() {
               Privacy Policy
             </Link>
             <Link
-              href={"/privacy-policy"}
+              href={"/terms&conditions"}
               className="text-sm hover:text-blue-500 transition-colors duration-200"
             >
               Terms and Conditions

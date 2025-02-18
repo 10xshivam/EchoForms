@@ -69,8 +69,8 @@ export default function Forms() {
       const data = await res.data;
       setUsage(data);
     }
-    fetchForm();
     fetchUsage();
+    fetchForm();
   }, [fetchForm]);
 
   const copyToClipboard = async (url: string) => {

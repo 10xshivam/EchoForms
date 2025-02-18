@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Check } from "lucide-react";
 import { pricingPlan } from "@/lib/data";
+import Link from "next/link";
 
 export default function Pricing() {
   return (
@@ -25,7 +26,7 @@ export default function Pricing() {
                 </p>
                 <p className="text-3xl font-bold !mb-2">
                   {plan.price}{" "}
-                  <span className="block font-normal text-base text-zinc-100/30">
+                  <span className="block font-normal text-base text-zinc-700/80 dark:text-zinc-100/30 ">
                     Billed monthly
                   </span>
                 </p>
@@ -39,7 +40,7 @@ export default function Pricing() {
                 {plan.features.map((feature) => (
                   <div key={feature} className="flex items-center gap-1 mb-1 ">
                     <Check className="text-blue-800 inline" size={15} />
-                    <span className="text-zinc-400 text-base">{feature}</span>
+                    <span className="text-zinc-700/60 dark:text-zinc-400 text-base">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -52,7 +53,9 @@ export default function Pricing() {
       </div>
       <p className="mx-auto text-zinc-500/50 dark:text-zinc-100/50 text-sm">
         View a more detailed feature list on our{" "}
-        <span className="hover:underline text-blue-700">pricing page</span>{" "}
+        <Link href={"/pricing"}>
+          <span className="hover:underline text-blue-700">pricing page</span>{" "}
+        </Link>
       </p>
     </div>
   );

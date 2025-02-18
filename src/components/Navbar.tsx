@@ -36,9 +36,7 @@ export default function Navbar() {
         ) : (
           <>
             <Link href="/">
-              <Button className="bg-transparent border hover:border-none  dark:border-zinc-100/10 hover:bg-zinc-800/10  dark:hover:bg-zinc-800 text-black dark:text-white text-sm ">
-                <Home/>
-              </Button>
+                <Home/> 
             </Link>
             <Link href="/dashboard">
               <Button className="bg-transparent border hover:border-none  dark:border-zinc-100/10 hover:bg-zinc-800/10  dark:hover:bg-zinc-800 text-black dark:text-white text-sm ">

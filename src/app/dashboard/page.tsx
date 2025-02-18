@@ -55,19 +55,21 @@ export default function Dashboard() {
             used={usage.createdForms}
             limit={usage.plan === "Basic" ? 5 : 50}
           />
-          <Card className="border p-7 flex  gap-8 dark:bg-zinc-700/40 border-none min-w-80 items-center rounded-xl">
-            <div>
-              <h3 className="text-lg font-semibold">CURRENT PLAN</h3>
-              <p className="text-3xl font-bold italic text-zinc-500 my-2">
-                {usage.plan === "free" ? "₹0" : "₹499"}
-              </p>
-            </div>
-            <div className="w-[157px] h-[157px]  border-[13px] border-zinc-600/10 dark:border-zinc-600 rounded-full flex justify-center items-center">
-              <p className="font-semibold text-3xl text-blue-600">
-                {usage.plan}
-              </p>
-            </div>
-          </Card>
+          <div className="border p-5 rounded-xl">
+            <Card className="border p-7 flex  gap-8 dark:bg-zinc-700/40 border-none min-w-80 items-center rounded-xl">
+              <div>
+                <h3 className="text-lg font-semibold">CURRENT PLAN</h3>
+                <p className="text-3xl font-bold italic text-zinc-500 my-2">
+                  {usage.plan === "free" ? "₹0" : "₹499"}
+                </p>
+              </div>
+              <div className="w-[157px] h-[157px]  border-[13px] border-zinc-600/10 dark:border-zinc-600 rounded-full flex justify-center items-center">
+                <p className="font-semibold text-3xl text-blue-600">
+                  {usage.plan}
+                </p>
+              </div>
+            </Card>
+          </div>
         </div>
         <div className="pt-10">
           <div className="flex justify-between items-baseline mb-3  ">
