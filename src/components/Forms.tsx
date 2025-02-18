@@ -102,14 +102,13 @@ export default function Forms() {
     return (
       <div className="w-full flex justify-center items-center py-40">
         <Loader className="text-black dark:text-white animate-spin" size={40} />
-        lawda
       </div>
     );
   }
   return (
     <div className="flex flex-col gap-8 py-8">
       {forms.map((form) => (
-        <Card key={form.id} className=" ">
+        <Card key={form.id} className="bg-white dark:bg-zinc-800/30">
           <CardHeader className="relative">
             <CardTitle className="text-2xl">{form.content.formTitle}</CardTitle>
             <CardDescription className="text-base">
@@ -117,13 +116,13 @@ export default function Forms() {
               <div className=" absolute right-5 top-5 flex gap-2">
                 <Link href={`/form/edit/${form.id}`}>
                   <div className="border p-2 rounded-lg curser-pointer">
-                    <Pencil size={20} />
+                    <Pencil size={20} className="hover:text-blue-500 transition-colors duration-200" />
                   </div>
                 </Link>
                 <Dialog>
                   <DialogTrigger asChild>
                     <div className="border p-2 rounded-lg cursor-pointer">
-                      <Trash2 size={20} />
+                      <Trash2 size={20} className="hover:text-red-500 transition-colors duration-200" />
                     </div>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[425px]">
@@ -137,7 +136,7 @@ export default function Forms() {
                       <Button
                         type="submit"
                         variant={"destructive"}
-                        onClick={() => onDelete(form.id)}
+                        onClick={() => onDelete(form.id)} 
                       >
                         Delete
                       </Button>
@@ -147,7 +146,7 @@ export default function Forms() {
                 <Dialog>
                   <DialogTrigger asChild>
                     <div className="border p-2 rounded-lg cursor-pointer">
-                      <Share2 size={20} />
+                      <Share2 size={20} className="hover:text-blue-500 transition-colors duration-200" />
                     </div>
                   </DialogTrigger>
                   <DialogContent>
@@ -182,7 +181,7 @@ export default function Forms() {
                 </Dialog>
                 <Link href={`/form/submit/${form.shareUrl}`}>
                   <div className="border p-2 rounded-lg">
-                    <Eye size={20} />
+                    <Eye size={20} className="hover:text-blue-500 transition-colors duration-200" />
                   </div>
                 </Link>
               </div>

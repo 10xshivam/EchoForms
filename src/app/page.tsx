@@ -25,15 +25,14 @@ export default function Home() {
       <div className="w-full flex justify-center items-center px-40 pb-36">
         <HowItworks />
       </div>
-      {/* <Pricing /> */}
       <div className="w-full flex items-start px-40 pb-36 flex-col gap-10">
         <div className="p-8 border w-fit">
-          <h3 className="text-7xl font-bold tracking-tight bg-gradient-to-b dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
+          <h3 className="text-7xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
             What Users Say
           </h3>
         </div>
         <div className="flex h-[350px] gap-4 pt-7">
-          <div className="bg-zinc-700 rounded-lg h-full w-2"></div>
+          <div className="bg-zinc-700/30 dark:bg-zinc-700 rounded-lg h-full w-2"></div>
           <Testimonial />
         </div>
         <span className=" border px-8 p-5 mx-auto">and much more...</span>
@@ -41,9 +40,9 @@ export default function Home() {
         <Pricing />
       <div className="w-full flex justify-center items-center px-52 pb-36 ">
         <div className="border max-w-[800px] p-10 flex-col gap-8 flex">
-          <h3 className="text-6xl font-semibold tracking-tight bg-gradient-to-b dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
+          <h3 className="text-6xl font-semibold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
             Things,{" "}
-            <span className="text-4xl bg-zinc-700/50 px-5 py-2  rounded-full text-white/80">
+            <span className="text-4xl bg-zinc-700/50 px-5 py-2  rounded-full dark:text-white/80 text-white">
               ?
             </span>{" "}
             you

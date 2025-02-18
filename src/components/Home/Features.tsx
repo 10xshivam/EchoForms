@@ -51,12 +51,12 @@ export default function Features() {
   return (
     <div className=" w-full rounded-2xl p-10">
       <div className="p-8 border w-fit">
-        <h3 className="text-7xl text-center font-bold tracking-tight bg-gradient-to-b dark:from-white dark:to-white/50 bg-clip-text text-transparent">
+        <h3 className="text-7xl text-center font-bold tracking-tight bg-gradient-to-b from-black to-black/50  dark:from-white dark:to-white/50 bg-clip-text text-transparent">
           Features That Matter !
         </h3>
       </div>
       <div className="flex pt-12 h-[560px] gap-5">
-        <div className="bg-zinc-700 rounded-lg h-full w-3"></div>
+        <div className="bg-zinc-600/40 dark:bg-zinc-700 rounded-lg h-full w-3"></div>
       <div className="grid grid-cols-2 gap-7 ">
         {features.map((feature, index) => (
           <div key={index} className="p-4 border rounded-xl bg-zinc-700/5">

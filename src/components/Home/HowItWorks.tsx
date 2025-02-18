@@ -52,9 +52,10 @@ export default function HowItWorks({ className }: { className?: string }) {
     <div
       className={cn("relative flex w-full justify-center items-center gap-36", className)}
       ref={containerRef}
+      id="how-it-works"
     >
-        <div ref={div6Ref} className="bg-zinc-700 z-40 rounded-xl p-5">
-          <h2 className="text-6xl font-bold tracking-tighter bg-gradient-to-b from-black to-black/70 dark:from-white dark:to-white/70 bg-clip-text text-transparent">
+        <div ref={div6Ref} className="bg-zinc-300 dark:bg-zinc-700 z-40 rounded-xl p-5">
+          <h2 className="text-6xl font-bold tracking-tighter bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-white/70 bg-clip-text text-transparent">
             How it works ?
           </h2>
         </div>
@@ -63,7 +64,7 @@ export default function HowItWorks({ className }: { className?: string }) {
           <div
             ref={step.ref}
             key={step.step}
-            className="group relative overflow-hidden rounded-2xl bg-zinc-800/20 dark:bg-zinc-900 p-6  max-md:p-5"
+            className="group relative overflow-hidden rounded-2xl bg-zinc-200 dark:bg-zinc-900 p-6  max-md:p-5"
           >
             <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
             <div className="flex gap-6 max-md:flex-col max-md:gap-2">

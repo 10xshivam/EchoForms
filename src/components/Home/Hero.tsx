@@ -15,7 +15,7 @@ export default function Hero() {
           </div>
           <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40" />
         </button>
-        <h1 className="text-center text-7xl font-bold tracking-tighter  ">
+        <h1 className="text-center text-7xl font-bold tracking-tighter bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1.5  ">
           Generate Forms Instantly.
           <span className="block mt-2">No Code. Just Magic.</span>
         </h1>
@@ -34,13 +34,19 @@ export default function Hero() {
             />
           </button>
 
-          <HoverBorderGradient
+            <HoverBorderGradient
             containerClassName="rounded-lg"
             as="button"
             className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
-          >
+            onClick={() => {
+              const element = document.getElementById('how-it-works');
+              if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            >
             <span>How it works ?</span>
-          </HoverBorderGradient>
+            </HoverBorderGradient>
         </div>
       </div>
   )

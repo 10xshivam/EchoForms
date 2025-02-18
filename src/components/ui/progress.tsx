@@ -3,7 +3,7 @@
 import * as React from "react";
 
 interface ProgressProps {
-  value: number; // Percentage value (0-100)
+  value: number;
 }
 
 const Progress: React.FC<ProgressProps> = ({ value }) => {

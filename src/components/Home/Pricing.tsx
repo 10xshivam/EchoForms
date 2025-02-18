@@ -8,7 +8,7 @@ export default function Pricing() {
   return (
     <div className="flex flex-col justify-center items-center gap-10 pb-32">
       <div className="p-8 border w-fit">
-        <h3 className="text-7xl font-bold tracking-tight bg-gradient-to-b dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1.5">
+        <h3 className="text-7xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1.5">
           Plans and Pricing
         </h3>
       </div>
@@ -50,7 +50,7 @@ export default function Pricing() {
           </div>
         ))}
       </div>
-      <p className="mx-auto text-zinc-100/50 text-sm">
+      <p className="mx-auto text-zinc-500/50 dark:text-zinc-100/50 text-sm">
         View a more detailed feature list on our{" "}
         <span className="hover:underline text-blue-700">pricing page</span>{" "}
       </p>
