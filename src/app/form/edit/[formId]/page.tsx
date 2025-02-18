@@ -59,7 +59,7 @@ export default function FormDetail() {
   const [selectedField, setSelectedField] = useState<FormField | null>(null);
   const [dialogType, setDialogType] = useState<"update" | "delete">("update");
   const [isAddFieldDialogOpen, setIsAddFieldDialogOpen] = useState(false);
-  const [shareId,setShareId] = useState("")
+  const [shareId, setShareId] = useState("");
   const [newField, setNewField] = useState<Partial<FormField>>({
     fieldType: "text",
     required: false,
@@ -73,7 +73,7 @@ export default function FormDetail() {
     try {
       const res = await axios.get(`/api/forms/details?formId=${formId}`);
       const data = await res?.data;
-      setShareId(data.form.shareUrl)
+      setShareId(data.form.shareUrl);
       if (data.success) {
         setFormDetails(data.form.content as FormDetails);
         reactForm.reset(data.form.content);
@@ -197,186 +197,188 @@ export default function FormDetail() {
             size={20}
             strokeWidth={2}
           />{" "}
-          Dashboard
+          Back
         </Link>
+        <p className="font-bold text-xl">Edit Your Form</p>
         <div className="flex gap-x-3">
-        <ThemeToggle />
-        <Link href={`/form/submit/${shareId}`}>
-        <Button>Live Preview</Button>
-        </Link>
+          <ThemeToggle />
+          <Link href={`/form/submit/${shareId}`}>
+            <Button>Live Preview</Button>
+          </Link>
         </div>
       </div>
-      <form
-        onSubmit={reactForm.handleSubmit((data) =>
-          console.log("Form Submitted:", data)
-        )}
-        className="space-y-4 mt-4 max-w-lg mx-auto"
-      >
-      <h2 className="text-2xl font-bold text-center">
-        {formDetails.formTitle}
-      </h2>
-      <p className="text-white/50 text-center text-sm">
-        {formDetails.formHeading}
-      </p>
-        {formDetails.formFields.map((field) => (
-          <div key={field.fieldName} className="relative flex flex-col gap-2">
-            <Label htmlFor={field.fieldName}>{field.fieldTitle}</Label>
-            {field.fieldType === "text" ||
-            field.fieldType === "email" ||
-            field.fieldType === "password" ||
-            field.fieldType === "number" ? (
-              <Input
-                id={field.fieldName}
-                type={field.fieldType}
-                placeholder={field.placeholder}
-                {...reactForm.register(field.fieldName, {
-                  required: field.required,
-                })}
-                required={field.required}
-              />
-            ) : field.fieldType === "textarea" ? (
-              <Textarea
-                id={field.fieldName}
-                placeholder={field.placeholder}
-                {...reactForm.register(field.fieldName, {
-                  required: field.required,
-                })}
-                required={field.required}
-              />
-            ) : field.fieldType === "select" ? (
-              <Controller
-                control={reactForm.control}
-                name={field.fieldName}
-                rules={{ required: field.required }}
-                render={({ field: selectField }) => (
-                  <Select
-                    onValueChange={selectField.onChange}
-                    value={String(selectField.value)}
-                    required={field.required}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder={field.placeholder} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {Array.isArray(field.options) && 
-                        field.options.map(
-                          (
-                            option: string 
-                          ) => (
+      <div className="border mx-auto py-10 pl-10 pr-24 rounded-xl">
+        <form
+          onSubmit={reactForm.handleSubmit((data) =>
+            console.log("Form Submitted:", data)
+          )}
+          className="space-y-4 max-w-lg "
+        >
+          <div>
+            <h2 className="text-2xl font-bold text-center">
+              {formDetails.formTitle}
+            </h2>
+            <p className="text-white/50 text-center text-base mt-1">
+              {formDetails.formHeading}
+            </p>
+          </div>
+          {formDetails.formFields.map((field) => (
+            <div key={field.fieldName} className="relative flex flex-col gap-2">
+              <Label htmlFor={field.fieldName}>{field.fieldTitle}</Label>
+              {field.fieldType === "text" ||
+              field.fieldType === "email" ||
+              field.fieldType === "password" ||
+              field.fieldType === "number" ? (
+                <Input
+                  id={field.fieldName}
+                  type={field.fieldType}
+                  placeholder={field.placeholder}
+                  {...reactForm.register(field.fieldName, {
+                    required: field.required,
+                  })}
+                  required={field.required}
+                />
+              ) : field.fieldType === "textarea" ? (
+                <Textarea
+                  id={field.fieldName}
+                  placeholder={field.placeholder}
+                  {...reactForm.register(field.fieldName, {
+                    required: field.required,
+                  })}
+                  required={field.required}
+                />
+              ) : field.fieldType === "select" ? (
+                <Controller
+                  control={reactForm.control}
+                  name={field.fieldName}
+                  rules={{ required: field.required }}
+                  render={({ field: selectField }) => (
+                    <Select
+                      onValueChange={selectField.onChange}
+                      value={String(selectField.value)}
+                      required={field.required}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder={field.placeholder} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Array.isArray(field.options) &&
+                          field.options.map((option: string) => (
                             <SelectItem key={option} value={option}>
                               {option}
                             </SelectItem>
-                          )
-                        )}
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-            ) : field.fieldType === "checkbox" ? (
-              <Controller
-                control={reactForm.control}
-                name={field.fieldName}
-                rules={{ required: field.required }}
-                render={({ field: checkboxField }) => (
-                  <div className="flex gap-2 items-center">
-                    <Checkbox
+                          ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+              ) : field.fieldType === "checkbox" ? (
+                <Controller
+                  control={reactForm.control}
+                  name={field.fieldName}
+                  rules={{ required: field.required }}
+                  render={({ field: checkboxField }) => (
+                    <div className="flex gap-2 items-center">
+                      <Checkbox
+                        id={field.fieldName}
+                        checked={Boolean(checkboxField.value)}
+                        onCheckedChange={checkboxField.onChange}
+                        required={field.required}
+                      />
+                      <Label htmlFor={field.fieldName}>
+                        {field.options?.[0] ?? "Accept Terms"}
+                      </Label>
+                    </div>
+                  )}
+                />
+              ) : field.fieldType === "radio" ? (
+                <Controller
+                  control={reactForm.control}
+                  name={field.fieldName}
+                  rules={{ required: field.required }}
+                  render={({ field: radioField }) => (
+                    <RadioGroup
+                      value={String(radioField.value)}
+                      onValueChange={radioField.onChange}
+                      className="flex flex-col gap-2"
+                    >
+                      {Array.isArray(field.options) &&
+                        field.options.map((option: string) => (
+                          <div key={option} className="flex items-center gap-2">
+                            <RadioGroupItem
+                              value={option}
+                              id={`${field.fieldName}-${option}`}
+                              required={field.required}
+                            />
+                            <Label htmlFor={`${field.fieldName}-${option}`}>
+                              {option}
+                            </Label>
+                          </div>
+                        ))}
+                    </RadioGroup>
+                  )}
+                />
+              ) : field.fieldType === "file" ? (
+                <Controller
+                  control={reactForm.control}
+                  name={field.fieldName}
+                  rules={{ required: field.required }}
+                  render={({ field: fileField }) => (
+                    <Input
+                      className="w-full py-1.5 border-2 border-dashed  cursor-pointer file:hidden"
                       id={field.fieldName}
-                      checked={Boolean(checkboxField.value)}
-                      onCheckedChange={checkboxField.onChange}
+                      type="file"
+                      accept="image/*, .pdf, .docx"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          fileField.onChange(file);
+                        }
+                      }}
                       required={field.required}
                     />
-                    <Label htmlFor={field.fieldName}>
-                      {field.options?.[0] ?? "Accept Terms"}
-                    </Label>
-                  </div>
-                )}
-              />
-            ) : field.fieldType === "radio" ? (
-              <Controller
-                control={reactForm.control}
-                name={field.fieldName}
-                rules={{ required: field.required }}
-                render={({ field: radioField }) => (
-                  <RadioGroup
-                    value={String(radioField.value)}
-                    onValueChange={radioField.onChange}
-                    className="flex flex-col gap-2"
-                  >
-                    {Array.isArray(field.options) && 
-                      field.options.map((option: string) => (
-                        <div key={option} className="flex items-center gap-2">
-                          <RadioGroupItem
-                            value={option}
-                            id={`${field.fieldName}-${option}`}
-                            required={field.required}
-                          />
-                          <Label htmlFor={`${field.fieldName}-${option}`}>
-                            {option}
-                          </Label>
-                        </div>
-                      ))}
-                  </RadioGroup>
-                )}
-              />
-            ) : field.fieldType === "file" ? (
-              <Controller
-                control={reactForm.control}
-                name={field.fieldName}
-                rules={{ required: field.required }}
-                render={({ field: fileField }) => (
-                  <Input
-                    className="w-full py-1.5 border-2 border-dashed  cursor-pointer file:hidden"
-                    id={field.fieldName}
-                    type="file"
-                    accept="image/*, .pdf, .docx"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        fileField.onChange(file);
-                      }
-                    }}
-                    required={field.required}
-                  />
-                )}
-              />
-            ) : null}
-            <div className="absolute -right-16 top-7 flex gap-2">
-              <SquarePen
-                className="text-zinc-600"
-                onClick={() => {
-                  setSelectedField(field);
-                  setDialogType("update");
-                  setIsDialogOpen(true);
-                }}
-              />
-              <Trash2
-                className="text-red-600"
-                onClick={() => {
-                  setSelectedField(field);
-                  setDialogType("delete");
-                  setIsDialogOpen(true);
-                }}
-              />
-            </div>
-            {/* {reactForm.formState.errors[field.fieldName] && (
+                  )}
+                />
+              ) : null}
+              <div className="absolute -right-16 top-7 flex gap-2">
+                <SquarePen
+                  className="text-zinc-600"
+                  onClick={() => {
+                    setSelectedField(field);
+                    setDialogType("update");
+                    setIsDialogOpen(true);
+                  }}
+                />
+                <Trash2
+                  className="text-red-600"
+                  onClick={() => {
+                    setSelectedField(field);
+                    setDialogType("delete");
+                    setIsDialogOpen(true);
+                  }}
+                />
+              </div>
+              {/* {reactForm.formState.errors[field.fieldName] && (
               <p className="text-red-500 text-sm">This field is required.</p>
             )} */}
-          </div>
-        ))}
-        <Button
-        type="button"
-        variant="outline"
-                className=" w-full"
-                onClick={() => {
-                  setIsAddFieldDialogOpen(true);
-                }}
-        >
-          <Plus/>
-          Add more fields</Button>
-        <Button type="submit" className="w-full">
-          Submit
-        </Button>
-      </form>
+            </div>
+          ))}
+          <Button
+            type="button"
+            variant="outline"
+            className=" w-full"
+            onClick={() => {
+              setIsAddFieldDialogOpen(true);
+            }}
+          >
+            <Plus />
+            Add more fields
+          </Button>
+          <Button type="submit" className="w-full">
+            Submit
+          </Button>
+        </form>
+      </div>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
@@ -438,7 +440,10 @@ export default function FormDetail() {
           )}
         </DialogContent>
       </Dialog>
-      <Dialog open={isAddFieldDialogOpen} onOpenChange={setIsAddFieldDialogOpen}>
+      <Dialog
+        open={isAddFieldDialogOpen}
+        onOpenChange={setIsAddFieldDialogOpen}
+      >
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Add New Field</DialogTitle>
@@ -501,7 +506,7 @@ export default function FormDetail() {
                   onChange={(e) =>
                     setNewField((prev) => ({
                       ...prev,
-                      options: e.target.value, 
+                      options: e.target.value,
                     }))
                   }
                 />

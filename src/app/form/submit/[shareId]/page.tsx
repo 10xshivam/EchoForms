@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import toast from "react-hot-toast";
 
 interface FormField {
   fieldName: string;
@@ -42,9 +43,11 @@ interface FormDetails {
 }
 
 export default function ShareUrl() {
-  const { shareId } = useParams();
+  const { shareId } = useParams()
+  const router = useRouter()
   const [formDetails, setFormDetails] = useState<FormDetails | null>(null);
-  console.log(shareId);
+  const [loading,setLoading] = useState(false)
+
 
   const reactForm = useForm<Record<string, string | File>>({
     defaultValues: { formTitle: "", formHeading: "" },
@@ -73,11 +76,12 @@ export default function ShareUrl() {
 
   const onSubmit = async (formData: Record<string, string | File>) => {
     try {
+      setLoading(true)
       const formPayload = new FormData();
 
       Object.entries(formData).forEach(([key, value]) => {
         if (value instanceof File) {
-          formPayload.append(key, value); 
+          formPayload.append(key, value);
         } else {
           formPayload.append(key, value);
         }
@@ -91,12 +95,14 @@ export default function ShareUrl() {
 
       const data = await response.data;
       if (data.success) {
-        alert("Response submitted successfully!");
+        router.push(`/form/submit/${shareId}/success`);
       } else {
-        alert("Failed to submit response: " + data.error);
+        toast("Failed to submit response: " + data.error);
       }
     } catch (error) {
       console.error("Submission error:", error);
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -108,20 +114,22 @@ export default function ShareUrl() {
     );
   }
   return (
-    <div>
+    <div className="w-full min-h-screen justify-center pt-20">
       <form
         onSubmit={reactForm.handleSubmit(onSubmit)}
         className="space-y-4 mt-4 max-w-lg mx-auto"
       >
-        <h2 className="text-2xl font-bold text-center">
-          {formDetails.formTitle}
-        </h2>
-        <p className="text-white/50 text-center text-sm">
-          {formDetails.formHeading}
-        </p>
+        <div className="border-2 p-2 px-4 bg-zinc-800/40 rounded-xl mb-2 border-l-8">
+          <h2 className="text-3xl tracking-tighter font-bold bg-gradient-to-b dark:from-white dark:to-zinc-200 bg-clip-text text-transparent py-1">
+            {formDetails.formTitle}
+          </h2>
+          <p className="text-white/40 tracking-tight text-base">
+            {formDetails.formHeading}
+          </p>
+        </div>
         {formDetails.formFields.map((field) => (
           <div key={field.fieldName} className="relative flex flex-col gap-2">
-            <Label htmlFor={field.fieldName}>{field.fieldTitle}</Label>
+            <Label htmlFor={field.fieldName} className="text-sm">{field.fieldTitle}</Label>
             {field.fieldType === "text" ||
             field.fieldType === "email" ||
             field.fieldType === "password" ||
@@ -134,6 +142,7 @@ export default function ShareUrl() {
                   required: field.required,
                 })}
                 required={field.required}
+                className="h-11 border-2 focus:ring-2 focus:ring-gray-600 rounded-lg"
               />
             ) : field.fieldType === "textarea" ? (
               <Textarea
@@ -143,6 +152,7 @@ export default function ShareUrl() {
                   required: field.required,
                 })}
                 required={field.required}
+                className="h-11 border-2"
               />
             ) : field.fieldType === "select" ? (
               <Controller
@@ -150,10 +160,12 @@ export default function ShareUrl() {
                 name={field.fieldName}
                 rules={{ required: field.required }}
                 render={({ field: selectField }) => (
+                  
                   <Select
                     onValueChange={selectField.onChange}
                     value={String(selectField.value)}
                     required={field.required}
+                    
                   >
                     <SelectTrigger>
                       <SelectValue placeholder={field.placeholder} />
@@ -207,7 +219,7 @@ export default function ShareUrl() {
                             id={`${field.fieldName}-${option}`}
                             required={field.required}
                           />
-                          <Label htmlFor={`${field.fieldName}-${option}`}>
+                          <Label htmlFor={`${field.fieldName}-${option}`} className="text-base">
                             {option}
                           </Label>
                         </div>
@@ -239,8 +251,9 @@ export default function ShareUrl() {
             ) : null}
           </div>
         ))}
-        <Button type="submit" className="w-full">
-          Submit
+        <Button type="submit" className="text-base w-full h-10">
+          {!loading ? "Submit -->" : "Submitting..."}
+          
         </Button>
       </form>
     </div>
