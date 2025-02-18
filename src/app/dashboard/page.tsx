@@ -9,14 +9,16 @@ import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Loader } from "lucide-react";
+interface usageInterface{
+  createdForms: number,
+    totalSubmissions: number,
+    plan: string,
+}
 
 export default function Dashboard() {
   const { user } = useUser();
-  const [usage, setUsage] = useState({
-    createdForms: 0,
-    totalSubmissions: 0,
-    plan: "Basic",
-  });
+  const [usage, setUsage] = useState<usageInterface | null>(null);
 
   useEffect(() => {
     async function fetchUsage() {
@@ -26,13 +28,21 @@ export default function Dashboard() {
     }
     fetchUsage();
   }, []);
+
+  if (!usage) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Loader className="text-black dark:text-white animate-spin" size={40} />
+      </div>
+    );
+  }
   
   return (
-    <div className="w-full min-h-screen pt-32">
+    <div className="w-full min-h-screen pt-32 pb-10">
       <Navbar />
       <div className="px-24">
         <div className="flex  justify-between">
-          <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-b dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
+          <h2 className="text-4xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
             Hello {user?.firstName}
           </h2>
         </div>
@@ -46,7 +56,7 @@ export default function Dashboard() {
             <Card className="border p-7 flex flex-col gap-3 min-w-80 items-center rounded-xl">
               <h3 className="text-lg font-semibold">CURRENT PLAN</h3>
               <p className="text-3xl font-semibold my-2">{usage.plan === "free" ? "₹0" : "₹499"}</p>
-              <div className="w-[157px] h-[157px]  border-[13px] border-zinc-600 rounded-full flex justify-center items-center">
+              <div className="w-[157px] h-[157px]  border-[13px] border-zinc-600/10 dark:border-zinc-600 rounded-full flex justify-center items-center">
                 <p className="font-semibold text-3xl text-blue-600">{usage.plan}</p>
               </div>
             </Card>

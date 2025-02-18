@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Check, Clipboard, Eye, Pencil, Share2, Trash2 } from "lucide-react";
+import { Check, Clipboard, Eye, Loader, Pencil, Share2, Trash2 } from "lucide-react";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { Button } from "./ui/button";
 import EmailNotificationToggle from "./EmailNotificationToggle";
@@ -69,8 +69,8 @@ export default function Forms() {
       const data = await res.data;
       setUsage(data);
     }
-    fetchUsage();
     fetchForm();
+    fetchUsage();
   }, [fetchForm]);
 
   const copyToClipboard = async (url: string) => {
@@ -98,15 +98,16 @@ export default function Forms() {
     }
   };
 
-  if (!forms) {
+  if (!forms && !usage) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        Loading...
+      <div className="w-full flex justify-center items-center py-40">
+        <Loader className="text-black dark:text-white animate-spin" size={40} />
+        lawda
       </div>
     );
   }
   return (
-    <div className="flex flex-col gap-10 pt-8">
+    <div className="flex flex-col gap-8 py-8">
       {forms.map((form) => (
         <Card key={form.id} className=" ">
           <CardHeader className="relative">
@@ -153,7 +154,7 @@ export default function Forms() {
                     <DialogHeader>
                       <DialogTitle>Copy URL</DialogTitle>
                     </DialogHeader>
-                    <div className="bg-zinc-900 p-3 rounded-lg w-full">
+                    <div className="bg-zinc-900/10 dark:bg-zinc-900 p-3 rounded-lg w-full">
                       <code className="text-sky-500 text-sm">{`${window.location.origin}/form/submit/${form.shareUrl}`}</code>
                     </div>
                   <DialogFooter>

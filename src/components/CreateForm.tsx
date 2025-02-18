@@ -67,12 +67,12 @@ export function CreateForm() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="flex items-center bg-zinc-700/40 hover:bg-zinc-500/20 cursor-pointer pl-3 pr-4 gap-1 py-2 rounded-lg">
+        <div className="flex items-center bg-zinc-700/10 hover:bg-zinc-500/30 dark:bg-zinc-700/40 dark:hover:bg-zinc-500/20  cursor-pointer pl-3 pr-4 gap-1 py-2 rounded-lg">
           <Plus className="inline"  />
           <span>Create new form</span>
         </div>
       </DialogTrigger>
-      <DialogContent className="">
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Generate Your Custom Form</DialogTitle>
           <DialogDescription>
@@ -102,7 +102,7 @@ export function CreateForm() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="group bg-zinc-500/40 hover:bg-zinc-500/20 text-white w-full h-9 rounded-lg"
+                className="group bg-zinc-800 hover:bg-zinc-900 dark:bg-zinc-500/40 dark:hover:bg-zinc-500/20 text-white w-full h-9 rounded-lg"
               >
                 {isSubmitting ? (
                   <>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {
@@ -12,6 +12,10 @@ import {
 import * as XLSX from "xlsx";
 import { Button } from "@/components/ui/button";
 import { useParams } from "next/navigation";
+import Link from "next/link";
+import { ChevronLeft, Loader } from "lucide-react";
+import User from "@/components/User";
+import toast from "react-hot-toast";
 
 interface Form {
   id: number;
@@ -24,12 +28,11 @@ interface Form {
 interface Submission {
   id: number;
   createdAt: Date;
-  content: Record<string, string>; 
+  content: Record<string, string>;
 }
 
 export default function FormResponses() {
-  
-    const { formId } = useParams();
+  const { formId } = useParams();
 
   const [form, setForm] = useState<Form | null>(null);
   const [responses, setResponses] = useState<Submission[]>([]);
@@ -45,9 +48,9 @@ export default function FormResponses() {
         }
 
         const res = await axios.get(`/api/forms/submissions?formId=${formId}`);
-        const data = res.data
+        const data = res.data;
         if (data.success) {
-        const cleanedResponses = data.data.map((response: Submission) => ({
+          const cleanedResponses = data.data.map((response: Submission) => ({
             ...response,
             content: Object.fromEntries(
               Object.entries(response.content).filter(
@@ -55,7 +58,7 @@ export default function FormResponses() {
               )
             ),
           }));
-    
+
           setResponses(cleanedResponses || []);
         }
       } catch (error) {
@@ -68,7 +71,7 @@ export default function FormResponses() {
 
   const exportToExcel = () => {
     if (!responses || responses.length === 0) {
-      alert("No responses available to export.");
+      toast("No responses available to export.");
       return;
     }
 
@@ -77,50 +80,79 @@ export default function FormResponses() {
     );
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Responses");
-    XLSX.writeFile(workbook, `${form?.content.formTitle.replace(/\s+/g, "_")}_Responses.xlsx`);
+    XLSX.writeFile(
+      workbook,
+      `${form?.content.formTitle.replace(/\s+/g, "_")}_Responses.xlsx`
+    );
   };
 
   if (!form) {
-    return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Loader className="text-black dark:text-white animate-spin" size={40} />
+      </div>
+    );
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">{form.content.formTitle}</h1>
-      <p className="text-gray-500 mb-6">{form.content.formHeading}</p>
-
-      <div className="mb-4">
-        <Button onClick={exportToExcel}>Export to Excel</Button>
+    <div className="w-full min-h-screen flex-col relative pt-24 px-20 justify-center items-center">
+      <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
+        <Link
+          href={"/dashboard"}
+          className=" py-2 px-3 rounded-lg flex justify-center items-center"
+        >
+          <ChevronLeft
+            className="inline text-zinc-500 mr-3"
+            size={20}
+            strokeWidth={2}
+          />{" "}
+          Back
+        </Link>
+        <div className="flex gap-x-3">
+          <User />
+        </div>
       </div>
+      <div>
+        <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
+          {form.content.formTitle}
+        </h1>
+        <p className="text-gray-600 font-medium mb-6 mt-1 tracking-tight text-lg">
+          {form.content.formHeading}
+        </p>
 
-     
-      {responses.length > 0 ? (
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>ID</TableHead>
-              <TableHead>SUBMITTED AT</TableHead>
-              {responses[0] &&
-                Object.keys(responses[0].content).map((key) => (
-                  <TableHead key={key}>{key.toLocaleUpperCase()}</TableHead>
-                ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {responses.map((response) => (
-              <TableRow key={response.id}>
-                <TableCell>{response.id}</TableCell>
-                <TableCell>{new Date(response.createdAt).toLocaleString()}</TableCell>
-                {Object.values(response.content).map((value, index) => (
-                  <TableCell key={index}>{value}</TableCell>
-                ))}
+        <div className="mb-4">
+          <Button onClick={exportToExcel}>Export to Excel</Button>
+        </div>
+        {responses.length > 0 ? (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>ID</TableHead>
+                <TableHead>SUBMITTED AT</TableHead>
+                {responses[0] &&
+                  Object.keys(responses[0].content).map((key) => (
+                    <TableHead key={key}>{key.toLocaleUpperCase()}</TableHead>
+                  ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      ) : (
-        <p>No responses available for this form.</p>
-      )}
+            </TableHeader>
+            <TableBody>
+              {responses.map((response) => (
+                <TableRow key={response.id}>
+                  <TableCell>{response.id}</TableCell>
+                  <TableCell>
+                    {new Date(response.createdAt).toLocaleString()}
+                  </TableCell>
+                  {Object.values(response.content).map((value, index) => (
+                    <TableCell key={index}>{value}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        ) : (
+          <p>No responses available for this form.</p>
+        )}
+      </div>
     </div>
   );
 }
