@@ -17,6 +17,7 @@ import { Label } from "@/components/ui/label";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import toast from "react-hot-toast";
+import { Loader, LoaderCircle } from "lucide-react";
 
 interface FormField {
   fieldName: string;
@@ -46,7 +47,7 @@ export default function ShareUrl() {
   const { shareId } = useParams()
   const router = useRouter()
   const [formDetails, setFormDetails] = useState<FormDetails | null>(null);
-  const [loading,setLoading] = useState(false)
+  const [isSubmitting,setIsSubmitting] = useState(false)
 
 
   const reactForm = useForm<Record<string, string | File>>({
@@ -76,7 +77,7 @@ export default function ShareUrl() {
 
   const onSubmit = async (formData: Record<string, string | File>) => {
     try {
-      setLoading(true)
+      setIsSubmitting(true)
       const formPayload = new FormData();
 
       Object.entries(formData).forEach(([key, value]) => {
@@ -97,19 +98,19 @@ export default function ShareUrl() {
       if (data.success) {
         router.push(`/form/submit/${shareId}/success`);
       } else {
-        toast("Failed to submit response: " + data.error);
+        toast.error("Failed to submit response: " + data.error);
       }
-    } catch (error) {
-      console.error("Submission error:", error);
+    } catch (err) {
+      toast.error("Submission error:" + err);
     } finally {
-      setLoading(false)
+      setIsSubmitting(false)
     }
   };
 
   if (!formDetails) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        Loading...
+        <Loader className="text-black dark:text-white animate-spin" size={40} />
       </div>
     );
   }
@@ -119,11 +120,11 @@ export default function ShareUrl() {
         onSubmit={reactForm.handleSubmit(onSubmit)}
         className="space-y-4 mt-4 max-w-lg mx-auto"
       >
-        <div className="border-2 p-2 px-4 bg-zinc-800/40 rounded-xl mb-2 border-l-8">
-          <h2 className="text-3xl tracking-tighter font-bold bg-gradient-to-b dark:from-white dark:to-zinc-200 bg-clip-text text-transparent py-1">
+        <div className="border-2 p-2 px-4 bg-zinc-800/5 dark:bg-zinc-800/40 rounded-xl mb-2 border-l-8">
+          <h2 className="text-3xl tracking-tighter font-bold bg-gradient-to-b from-black/80 to-zinc-700 dark:from-white dark:to-zinc-200 bg-clip-text text-transparent py-1">
             {formDetails.formTitle}
           </h2>
-          <p className="text-white/40 tracking-tight text-base">
+          <p className="text-zinc-500 dark:text-white/40 tracking-tight text-base ">
             {formDetails.formHeading}
           </p>
         </div>
@@ -167,7 +168,7 @@ export default function ShareUrl() {
                     required={field.required}
                     
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="border-2 h-11">
                       <SelectValue placeholder={field.placeholder} />
                     </SelectTrigger>
                     <SelectContent>
@@ -251,9 +252,12 @@ export default function ShareUrl() {
             ) : null}
           </div>
         ))}
-        <Button type="submit" className="text-base w-full h-10">
-          {!loading ? "Submit -->" : "Submitting..."}
-          
+        <Button type="submit" className="text-base w-full h-10" disabled={isSubmitting}>
+          {!isSubmitting ? "Submit -->" : 
+          <>
+          <LoaderCircle className="animate-spin"/>
+          Submitting...
+          </>}
         </Button>
       </form>
     </div>

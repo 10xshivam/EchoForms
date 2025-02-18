@@ -24,9 +24,10 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useForm, Controller } from "react-hook-form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ChevronLeft, Plus, SquarePen, Trash2 } from "lucide-react";
+import { ChevronLeft, Loader, Plus, SquarePen, Trash2 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 interface FormField {
   fieldName: string;
@@ -78,10 +79,10 @@ export default function FormDetail() {
         setFormDetails(data.form.content as FormDetails);
         reactForm.reset(data.form.content);
       } else {
-        console.error("Error:", data.error);
+        toast.error("Error:", data.error);
       }
     } catch (error) {
-      console.error("Failed to fetch form:", error);
+      toast.error("Failed to fetch form:"+ error);
     }
   }, [formId, reactForm]);
 
@@ -111,7 +112,7 @@ export default function FormDetail() {
       });
       setIsDialogOpen(false);
     } catch (error) {
-      console.error("Failed to update field:", error);
+      toast.error("Failed to update field:"+ error);
     }
   };
 
@@ -135,7 +136,7 @@ export default function FormDetail() {
       });
       setIsDialogOpen(false);
     } catch (error) {
-      console.error("Failed to delete field:", error);
+      toast.error("Failed to delete field:"+ error);
     }
   };
 
@@ -173,14 +174,14 @@ export default function FormDetail() {
       setNewField({ fieldType: "text", required: false });
       setIsAddFieldDialogOpen(false);
     } catch (error) {
-      console.error("Failed to add field:", error);
+      toast.error("Failed to add field:" + error);
     }
   };
 
   if (!formDetails) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        Loading...
+        <Loader className="text-black dark:text-white animate-spin" size={40} />
       </div>
     );
   }
@@ -207,12 +208,12 @@ export default function FormDetail() {
           </Link>
         </div>
       </div>
-      <div className="border mx-auto py-10 pl-10 pr-24 rounded-xl">
+      <div className="border mx-auto py-10 pl-10 pr-24 rounded-xl w-[500px]">
         <form
           onSubmit={reactForm.handleSubmit((data) =>
             console.log("Form Submitted:", data)
           )}
-          className="space-y-4 max-w-lg "
+          className="space-y-4"
         >
           <div>
             <h2 className="text-2xl font-bold text-center">

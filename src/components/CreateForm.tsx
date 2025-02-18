@@ -72,7 +72,7 @@ export function CreateForm() {
           <span>Create new form</span>
         </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="">
         <DialogHeader>
           <DialogTitle>Generate Your Custom Form</DialogTitle>
           <DialogDescription>

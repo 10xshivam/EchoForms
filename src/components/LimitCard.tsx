@@ -10,7 +10,7 @@ interface LimitCardProps {
 }
 
 export default function LimitCard({ title, used, limit }: LimitCardProps) {
-  const percentageUsed = (used / limit) * 100;
+  const percentageUsed = Number(((used / limit) * 100).toFixed(2));
 
   return (
       <Card className="p-7 flex flex-col gap-3 min-w-80 items-center rounded-2xl ">
