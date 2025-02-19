@@ -11,7 +11,6 @@ import Pricing from "@/components/Home/Pricing";
 import { Faq } from "@/components/Home/Faq";
 import Testimonial from "@/components/Home/Testimonial";
 import { FinalCTA } from "@/components/Home/FinalCTA";
-import HowItWorksMobile from "@/components/Home/HowItWorksMobile";
 
 export default function Home() {
   return (
@@ -26,7 +25,7 @@ export default function Home() {
       <div className="w-full flex justify-center items-center px-40 pb-36 max-md:p-0">
         <HowItworks />
       </div>
-      {/*<div className="w-full flex items-start px-40 pb-36 flex-col gap-10">
+      <div className="w-full flex items-start px-40 pb-36 flex-col gap-10 max-md:hidden">
         <div className="p-8 border w-fit">
           <h3 className="text-7xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
             What Users Say
@@ -39,11 +38,11 @@ export default function Home() {
         <span className=" border px-8 p-5 mx-auto">and much more...</span>
       </div>
         <Pricing />
-      <div className="w-full flex justify-center items-center px-52 pb-36 ">
-        <div className="border max-w-[800px] p-10 flex-col gap-8 flex">
-          <h3 className="text-6xl font-semibold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">
+      <div className="w-full flex justify-center items-center px-52 pb-36 max-md:p-7 max-md:mt-5">
+        <div className="border max-w-[800px] p-10 flex-col gap-8 flex max-md:w-full max-md:p-6 max-md:gap-3">
+          <h3 className="text-6xl font-semibold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent max-md:text-3xl">
             Things,{" "}
-            <span className="text-4xl bg-zinc-700/50 px-5 py-2  rounded-full dark:text-white/80 text-white">
+            <span className="text-4xl bg-zinc-700/50 px-5 py-2  rounded-full dark:text-white/80 text-white max-md:text-xl max-md:px-4">
               ?
             </span>{" "}
             you
@@ -52,7 +51,7 @@ export default function Home() {
           <Faq />
         </div>
       </div>
-      <FinalCTA/> */}
+      {/* <FinalCTA/>  */}
       {/* <Footer /> */}
     </div>
   );
