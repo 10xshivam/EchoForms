@@ -41,7 +41,7 @@ export function InteractiveGridPattern({
       width={width * horizontal}
       height={height * vertical}
       className={cn(
-        "absolute [mask-image:radial-gradient(500px_circle_at_center,white,transparent)]",
+        "absolute [mask-image:radial-gradient(500px_circle_at_center,white,transparent)] max-md:hidden",
         className,
       )}
       {...props}
