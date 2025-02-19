@@ -14,12 +14,12 @@ import { FinalCTA } from "@/components/Home/FinalCTA";
 
 export default function Home() {
   return (
-    <div className="relative w-full min-h-screen flex flex-col items-center pt-72">
+    <div className="relative w-full min-h-screen flex flex-col items-center pt-72 max-md:pt-48">
       <Navbar />
       <Spotlight />
-      <InteractiveGridPattern className="top-5 -z-10" />
+       <InteractiveGridPattern className="top-5 -z-10" />
       <Hero />
-      <div className="w-full flex flex-col justify-center items-center gap-12 pb-32 px-40">
+      {/*<div className="w-full flex flex-col justify-center items-center gap-12 pb-32 px-40">
         <Features />
       </div>
       <div className="w-full flex justify-center items-center px-40 pb-36">
@@ -51,8 +51,8 @@ export default function Home() {
           <Faq />
         </div>
       </div>
-      <FinalCTA/>
-      <Footer />
+      <FinalCTA/> */}
+      {/* <Footer /> */}
     </div>
   );
 }
