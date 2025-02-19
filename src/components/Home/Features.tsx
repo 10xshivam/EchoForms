@@ -49,15 +49,15 @@ const features = [
 
 export default function Features() {
   return (
-    <div className=" w-full rounded-2xl p-10">
+    <div className=" w-full rounded-2xl p-10 max-md:p-6">
       <div className="p-8 border w-fit max-md:p-4">
         <h3 className="text-7xl text-center font-bold tracking-tight bg-gradient-to-b from-black to-black/50  dark:from-white dark:to-white/50 bg-clip-text text-transparent max-md:text-3xl ">
           Features That Matter !
         </h3>
       </div>
-      <div className="flex pt-12 h-[560px] gap-5 max-md:pt-6">
+      <div className="flex pt-12 h-[560px] gap-5 max-md:pt-6 max-md:h-fit">
         <div className="bg-zinc-600/40 dark:bg-zinc-700 rounded-lg h-full w-3 max-md:hidden"></div>
-      <div className="grid grid-cols-2 gap-7 max-md:grid-cols-1 max-md:gap-3">
+      <div className="grid grid-cols-2 gap-7 max-md:grid-cols-1 max-md:gap-4 max-md:px-2">
         {features.map((feature, index) => (
           <div key={index} className="p-4 border rounded-xl bg-zinc-700/5 max-md:p-3">
             <div className="group relative flex overflow-hidden rounded-2xl bg-zinc-900/10 dark:bg-zinc-900 p-6 transition-all hover:bg-zinc-900/20 dark:hover:bg-zinc-800/80 max-md:p-4 max-md:rounded-lg gap-3">

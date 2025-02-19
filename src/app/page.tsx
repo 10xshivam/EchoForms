@@ -11,6 +11,7 @@ import Pricing from "@/components/Home/Pricing";
 import { Faq } from "@/components/Home/Faq";
 import Testimonial from "@/components/Home/Testimonial";
 import { FinalCTA } from "@/components/Home/FinalCTA";
+import HowItWorksMobile from "@/components/Home/HowItWorksMobile";
 
 export default function Home() {
   return (
@@ -22,10 +23,10 @@ export default function Home() {
       <div className="w-full flex flex-col justify-center items-center gap-12 pb-32 px-40 max-md:p-0 ">
         <Features />
       </div>
-      {/*<div className="w-full flex justify-center items-center px-40 pb-36">
+      <div className="w-full flex justify-center items-center px-40 pb-36 max-md:p-0">
         <HowItworks />
       </div>
-      <div className="w-full flex items-start px-40 pb-36 flex-col gap-10">
+      {/*<div className="w-full flex items-start px-40 pb-36 flex-col gap-10">
         <div className="p-8 border w-fit">
           <h3 className="text-7xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
             What Users Say
