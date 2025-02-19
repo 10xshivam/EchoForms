@@ -17,7 +17,7 @@ export default function Home() {
     <div className="relative w-full min-h-screen flex flex-col items-center pt-72 max-md:pt-56">
       <Navbar />
       <Spotlight />
-       <InteractiveGridPattern className="top-5 -z-10" />
+      <InteractiveGridPattern className="top-5 -z-10" />
       <Hero />
       <div className="w-full flex flex-col justify-center items-center gap-12 pb-32 px-40 max-md:p-0 ">
         <Features />
@@ -37,7 +37,7 @@ export default function Home() {
         </div>
         <span className=" border px-8 p-5 mx-auto">and much more...</span>
       </div>
-        <Pricing />
+      <Pricing />
       <div className="w-full flex justify-center items-center px-52 pb-36 max-md:p-7 max-md:mt-5">
         <div className="border max-w-[800px] p-10 flex-col gap-8 flex max-md:w-full max-md:p-6 max-md:gap-3">
           <h3 className="text-6xl font-semibold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent max-md:text-3xl">
@@ -51,8 +51,8 @@ export default function Home() {
           <Faq />
         </div>
       </div>
-      {/* <FinalCTA/>  */}
-      {/* <Footer /> */}
+      <FinalCTA />
+      <Footer />
     </div>
   );
 }
