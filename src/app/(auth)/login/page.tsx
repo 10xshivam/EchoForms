@@ -59,22 +59,22 @@ export default function Signin() {
     }
   }
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-background">
+    <div className="relative flex items-center justify-center min-h-screen max-md:items-start max-md:pt-20">
       <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
         <Link
           href={"/"}
-          className=" py-2 px-3 rounded-lg flex justify-center items-center"
+          className=" py-2 px-3 rounded-lg flex justify-center items-center max-md:px-0"
         >
           <ChevronLeft
-            className="inline text-zinc-500 mr-3"
+            className="inline text-zinc-500 mr-3 max-md:mr-1"
             size={20}
             strokeWidth={2}
           />{" "}
-          Home
+          Back
         </Link>
         <ThemeToggle />
       </div>
-      <Card className="w-full max-w-md  dark:bg-zinc-900/40 border-none">
+      <Card className="w-full max-w-md  dark:bg-zinc-900/40 border-none max-md:dark:bg-transparent max-md:shadow-none">
         <CardHeader>
           <div className="w-fit p-3 mx-auto bg-zinc-200 rounded-full dark:bg-zinc-800">
             <Image src="/Logo.png" alt="EchoForms" width={30} height={30} />
