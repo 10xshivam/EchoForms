@@ -187,7 +187,7 @@ export default function FormDetail() {
   }
 
   return (
-    <div className="relative w-full min-h-screen flex flex-col pt-28 max-md:pt-16">
+    <div className="relative w-full min-h-screen flex flex-col pt-28 max-md:pt-16 md:pb-16">
       <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center max-md:px-3">
         <Link
           href={"/dashboard"}

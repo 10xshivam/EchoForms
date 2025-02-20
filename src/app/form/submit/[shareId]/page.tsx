@@ -115,7 +115,7 @@ export default function ShareUrl() {
     );
   }
   return (
-    <div className="w-full min-h-screen justify-center pt-20 max-md:p-5 max-md:pb-10">
+    <div className="w-full min-h-screen justify-center pt-20 max-md:p-5 max-md:pb-10 md:pb-16">
       <form
         onSubmit={reactForm.handleSubmit(onSubmit)}
         className="space-y-4 mt-4 max-w-lg mx-auto"
