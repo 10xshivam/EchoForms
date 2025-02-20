@@ -187,28 +187,28 @@ export default function FormDetail() {
   }
 
   return (
-    <div className="relative w-full min-h-screen flex flex-col pt-28">
-      <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
+    <div className="relative w-full min-h-screen flex flex-col pt-28 max-md:pt-16">
+      <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center max-md:px-3">
         <Link
           href={"/dashboard"}
-          className=" py-2 px-3 rounded-lg flex justify-center items-center"
+          className=" py-2 px-3 rounded-lg flex justify-center items-center max-md:px-0 max-md:text-sm"
         >
           <ChevronLeft
-            className="inline text-zinc-500 mr-3"
+            className="inline text-zinc-500 mr-3 max-md:mr-0"
             size={20}
             strokeWidth={2}
-          />{" "}
+          />
           Back
         </Link>
-        <p className="font-bold text-xl">Edit Your Form</p>
+        <p className="font-bold text-xl max-md:text-sm max-md:hidden">Edit Your Form</p>
         <div className="flex gap-x-3">
           <ThemeToggle />
           <Link href={`/form/submit/${shareId}`}>
-            <Button>Live Preview</Button>
+            <Button className="max-md:text-xs max-md:px-2 max-md:h-8">Live Preview</Button>
           </Link>
         </div>
       </div>
-      <div className="border mx-auto py-10 pl-10 pr-24 rounded-xl w-[500px]">
+      <div className="border mx-auto py-10 pl-10 pr-24 rounded-xl md:w-[500px] max-md:border-none">
         <form
           onSubmit={reactForm.handleSubmit((data) =>
             console.log("Form Submitted:", data)
@@ -216,10 +216,10 @@ export default function FormDetail() {
           className="space-y-4"
         >
           <div>
-            <h2 className="text-2xl font-bold text-center">
+            <h2 className="text-2xl font-bold text-center max-md:text-base max-md:text-left">
               {formDetails.formTitle}
             </h2>
-            <p className="text-white/50 text-center text-base mt-1">
+            <p className="text-white/50 text-center text-base mt-1 max-md:text-left max-md:text-sm">
               {formDetails.formHeading}
             </p>
           </div>

@@ -65,7 +65,7 @@ export default function Dashboard() {
             limit={usage.plan === "Basic" ? 5 : 50}
           />
           <div className="border p-5 rounded-xl w-fit max-md:p-3">
-            <Card className="border p-7 flex  gap-8 dark:bg-zinc-700/40 border-none md:min-w-80 items-center rounded-xl max-md:w-full max-md:gap-5 max-md:p-5">
+            <Card className="border p-7 flex  gap-8 dark:bg-zinc-700/40 border-none md:min-w-80 items-center rounded-xl max-md:w-full max-md:gap-3 max-md:p-5 ">
               <div>
                 <h3 className="text-lg font-semibold max-md:text-sm">CURRENT PLAN</h3>
                 <p className="text-3xl font-bold italic text-zinc-500 my-2 max-md:text-xl">
