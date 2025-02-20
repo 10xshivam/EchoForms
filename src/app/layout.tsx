@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from 'react-hot-toast';
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
         <body className={`${inter.className} overflow-x-hidden`}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {children}
+            <Analytics/>
             <Toaster />
           </ThemeProvider>
         </body>
