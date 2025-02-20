@@ -49,9 +49,7 @@ export default function Signin() {
       if (result.status === "complete") {
         await setActive({ session: result.createdSessionId });
         router.push("/dashboard");
-      } else {
-        console.log(JSON.stringify(result, null, 2));
-      }
+      } 
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "An error occurred during sign up"
