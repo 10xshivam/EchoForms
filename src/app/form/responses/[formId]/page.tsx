@@ -94,17 +94,17 @@ export default function FormResponses() {
     );
   }
   return (
-    <div className="w-full min-h-screen flex-col relative pt-24 px-20 justify-center items-center">
+    <div className="w-full min-h-screen flex-col relative pt-24 px-20 justify-center items-center max-md:px-6 max-md:pt-16 max-md:pb-10">
       <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
         <Link
           href={"/dashboard"}
-          className=" py-2 px-3 rounded-lg flex justify-center items-center"
+          className=" py-2 px-3 rounded-lg flex justify-center items-center max-md:p-0"
         >
           <ChevronLeft
-            className="inline text-zinc-500 mr-3"
+            className="inline text-zinc-500 mr-3 max-md:mr-1"
             size={20}
             strokeWidth={2}
-          />{" "}
+          />
           Back
         </Link>
         <div className="flex gap-x-3">
@@ -112,16 +112,16 @@ export default function FormResponses() {
         </div>
       </div>
       <div>
-        <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
+        <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1 max-md:text-3xl">
           {form.content.formTitle}
         </h1>
-        <p className="text-zinc-500 font-medium mb-4 mt-1 tracking-tight text-lg">
+        <p className="text-zinc-500 font-medium mb-4 mt-1 tracking-tight text-lg max-md:text-base">
           {form.content.formHeading}
         </p>
         <div className="mb-4">
           <Button onClick={exportToExcel}>Export to Excel</Button>
         </div>
-        <div className="bg-zinc-500/10 dark:bg-zinc-800/30 rounded-lg p-6">
+        <div className="bg-zinc-500/10 dark:bg-zinc-800/30 rounded-lg p-6 max-md:p-4">
           {responses.length > 0 ? (
             <Table>
               <TableHeader>
@@ -160,7 +160,7 @@ export default function FormResponses() {
               </TableBody>
             </Table>
           ) : (
-            <p>No responses available for this form.</p>
+            <p >No responses available for this form.</p>
           )}
         </div>
       </div>

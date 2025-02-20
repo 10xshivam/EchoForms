@@ -75,23 +75,25 @@ export default function AnalyzeForm() {
   }
 
   return (
-    <div className="w-full min-h-screen p-20">
+    <div className="w-full min-h-screen p-20 max-md:px-6 max-md:pt-16 max-md:pb-10">
       <div className="w-full px-5 absolute top-4 left-0 flex justify-between items-center">
         <Link
           href={"/dashboard"}
-          className=" py-2 px-3 rounded-lg flex justify-center items-center"
+          className=" py-2 px-3 rounded-lg flex justify-center items-center max-md:p-0"
         >
           <ChevronLeft
-            className="inline text-zinc-500 mr-3"
+            className="inline text-zinc-500 mr-3 max-md:mr-1"
             size={20}
             strokeWidth={2}
-          />{" "}
+          />
           Back
         </Link>
-        <User />
+        <div className="flex gap-x-3">
+          <User />
+        </div>
       </div>
       <div>
-      <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1">
+      <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent py-1 max-md:text-3xl">
       AI-Powered Form Analysis
         </h1>
         <p className="text-zinc-500 font-medium mb-6 mt-1 tracking-tight text-base">
@@ -115,53 +117,53 @@ export default function AnalyzeForm() {
           <User />
         </div>
       </div>
-      <div className="flex flex-col border p-5">
-        <div className="bg-zinc-600/10 dark:bg-zinc-700/30 p-5 rounded-lg">
+      <div className="flex flex-col border p-5 max-md:p-3">
+        <div className="bg-zinc-600/10 dark:bg-zinc-700/30 p-5 rounded-lg max-md:p-4">
           {analysis && (
             <>
               <div className="mb-6">
-                <h3 className="font-bold text-2xl mb-2 ">Summary</h3>
-                <p className="text-zinc-500 dark:text-zinc-400">{analysis.summary}</p>
+                <h3 className="font-bold text-2xl mb-2 max-md:text-xl max-md:mb-1">Summary</h3>
+                <p className="text-zinc-500 dark:text-zinc-400 max-md:text-sm">{analysis.summary}</p>
               </div>
 
               <div className="mb-6">
-                <h3 className="font-bold text-2xl mb-2 ">Key Findings</h3>
+                <h3 className="font-bold text-2xl mb-2 max-md:text-xl max-md:mb-1">Key Findings</h3>
                 <ul className="list-disc pl-6">
                   {analysis.keyFindings.map((finding, index) => (
-                    <li key={index} className="text-zinc-500 dark:text-zinc-400">{finding}</li>
+                    <li key={index} className="text-zinc-500 dark:text-zinc-400 max-md:text-sm">{finding}</li>
                   ))}
                 </ul>
               </div>
 
               <div className="mb-6">
-                <h3 className="font-bold text-2xl mb-2 ">Sentiment Analysis</h3>
+                <h3 className="font-bold text-2xl mb-2 max-md:text-xl max-md:mb-1">Sentiment Analysis</h3>
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <p className="font-semibold text-zinc-500 dark:text-zinc-400">Positive:</p>
+                    <p className="font-semibold text-zinc-500 dark:text-zinc-400 max-md:text-sm">Positive:</p>
                     <p>{analysis.sentimentAnalysis.positive}</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-zinc-500 dark:text-zinc-400">Negative:</p>
+                    <p className="font-semibold text-zinc-500 dark:text-zinc-400 max-md:text-sm">Negative:</p>
                     <p>{analysis.sentimentAnalysis.negative}</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-zinc-500 dark:text-zinc-400">Neutral:</p>
+                    <p className="font-semibold text-zinc-500 dark:text-zinc-400 max-md:text-sm">Neutral:</p>
                     <p>{analysis.sentimentAnalysis.neutral}</p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h3 className="font-bold text-2xl mb-2 ">Recommendations</h3>
+                <h3 className="font-bold text-2xl mb-2 max-md:text-xl max-md:mb-1">Recommendations</h3>
                 <ul className="list-disc pl-6">
                   {analysis.recommendations.map((recommendation, index) => (
-                    <li key={index} className="text-zinc-500 dark:text-zinc-400">{recommendation}</li>
+                    <li key={index} className="text-zinc-500 dark:text-zinc-400 max-md:text-sm">{recommendation}</li>
                   ))}
                 </ul>
               </div>
             </>
           )}
-          <Button variant="outline" onClick={() => window.location.reload()} className="mt-5 w-fit">
+          <Button variant="outline" onClick={() => window.location.reload()} className="mt-5 w-fit max-md:px-3">
             Refresh Analysis
           </Button>
         </div>
