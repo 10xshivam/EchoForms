@@ -2,10 +2,11 @@ import React from "react";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import Link from "next/link";
+import GithubBtn from "../ui/github-btn";
 
 export default function Hero() {
   return (
-    <div className="flex flex-col justify-center items-center gap-5 pb-80 max-md:gap-2">
+    <div className="flex flex-col justify-center items-center gap-5 pb-80 max-md:gap-2 max-md:pb-36">
       <button className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block max-md:mb-2">
         <span className="absolute inset-0 overflow-hidden rounded-full">
           <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -49,6 +50,10 @@ export default function Hero() {
         >
           <span>How it works ?</span>
         </HoverBorderGradient>
+      </div>
+      <div className="mt-52">
+
+      <GithubBtn/>
       </div>
     </div>
   );
