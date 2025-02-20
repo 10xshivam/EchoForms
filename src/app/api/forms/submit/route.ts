@@ -4,7 +4,6 @@ import { submissions, forms, users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { writeFile } from "fs/promises";
 import path from "path";
-import { currentUser } from "@clerk/nextjs/server";
 import { sendEmail } from "@/lib/mail";
 
 interface SubmissionContent {
@@ -21,21 +20,43 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, error: "Missing form link" });
     }
 
-    const _user = await currentUser();
-    if (!_user) {
-      return NextResponse.json({ error: "User not found" });
+    const form = await db
+      .select({
+        id: forms.id,
+        ownerId: forms.ownerId,
+        receiveSubmissionEmails: forms.receiveSubmissionEmails,
+        submissions: forms.submissions,
+        shareUrl: forms.shareUrl,
+      })
+      .from(forms)
+      .where(eq(forms.shareUrl, shareId))
+      .limit(1);
+
+    if (form.length === 0 || !form[0].id) {
+      return NextResponse.json({ success: false, error: "Form not found" });
     }
 
-    const user = await db
-      .select()
-      .from(users)
-      .where(eq(users.id, _user.id))
-      .limit(1);
-    if (!user[0])
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    const formDetails = form[0];
 
-    const isPro = user[0].plan === "pro";
-    const totalSubmissions = user[0].totalSubmissions ?? 0;
+    const formOwner = await db
+      .select({
+        id: users.id,
+        email: users.email,
+        plan: users.plan,
+        totalSubmissions: users.totalSubmissions,
+      })
+      .from(users)
+      .where(eq(users.id, formDetails.ownerId))
+      .limit(1);
+
+    if (formOwner.length === 0 || !formOwner[0].id) {
+      return NextResponse.json({ error: "Form owner not found" }, { status: 404 });
+    }
+
+    const ownerDetails = formOwner[0];
+
+    const isPro = ownerDetails.plan === "Pro"; 
+    const totalSubmissions = ownerDetails.totalSubmissions ?? 0;
 
     if (!isPro && totalSubmissions >= 500) {
       return NextResponse.json(
@@ -44,24 +65,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const form = await db
-      .select()
-      .from(forms)
-      .where(eq(forms.shareUrl, shareId))
-      .limit(1);
-    if (form.length === 0) {
-      return NextResponse.json({ success: false, error: "Form not found" });
-    }
-
     const submissionContent: SubmissionContent = {};
-
     for (const [key, value] of formData.entries()) {
       if (key === "formFields") continue;
+
       if (value instanceof Blob) {
         const fileName = `${Date.now()}_${value.name}`;
         const filePath = `/temp/${fileName}`;
         const savePath = path.join(process.cwd(), "public/temp", fileName);
-
         await writeFile(savePath, Buffer.from(await value.arrayBuffer()));
         submissionContent[key] = filePath;
       } else {
@@ -70,27 +81,27 @@ export async function POST(req: NextRequest) {
     }
 
     await db.insert(submissions).values({
-      formId: form[0].id,
+      formId: formDetails.id,
       content: submissionContent,
     });
 
     await db
       .update(forms)
-      .set({ submissions: (form[0].submissions ?? 0) + 1 })
-      .where(eq(forms.id, form[0].id));
+      .set({ submissions: (formDetails.submissions ?? 0) + 1 })
+      .where(eq(forms.id, formDetails.id));
 
     await db
       .update(users)
       .set({ totalSubmissions: totalSubmissions + 1 })
-      .where(eq(users.id, user[0].id));
+      .where(eq(users.id, ownerDetails.id));
 
-      if (form[0].receiveSubmissionEmails) {
-        await sendEmail({
-          to: user[0].email, 
-          subject: "New Form Submission",
-          body: `You have received a new submission for your form: ${form[0].shareUrl}`,
-        });
-      }
+    if (formDetails.receiveSubmissionEmails) {
+      await sendEmail({
+        to: ownerDetails.email,
+        subject: "New Form Submission",
+        body: `You have received a new submission for your form: ${formDetails.shareUrl}`,
+      });
+    }
 
     return NextResponse.json({
       success: true,

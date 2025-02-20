@@ -69,7 +69,7 @@ export default function Dashboard() {
               <div>
                 <h3 className="text-lg font-semibold max-md:text-sm">CURRENT PLAN</h3>
                 <p className="text-3xl font-bold italic text-zinc-500 my-2 max-md:text-xl">
-                  {usage.plan === "free" ? "₹0" : "₹499"}
+                  {usage.plan === "Basic" ? "₹0" : "₹499"}
                 </p>
               </div>
               <div className="size-[157px] border-[13px] border-zinc-600/10 dark:border-zinc-600 rounded-full flex justify-center items-center max-md:size-[90px] max-md:border-[8px]">

@@ -60,7 +60,7 @@ export default function HowItWorks({ className }: { className?: string }) {
     >
       <div
         ref={div6Ref}
-        className="bg-zinc-300 dark:bg-zinc-700 z-40 rounded-xl p-5 max-md:p-3 max-md:border max-md:dark:bg-transparent max-md:rounded-none max-md:w-full"
+        className="bg-zinc-300 dark:bg-zinc-700 z-40 rounded-xl p-5 max-md:p-3 max-md:border max-md:dark:bg-transparent max-md:bg-transparent max-md:rounded-none max-md:w-full"
       >
         <h2 className="text-6xl font-bold tracking-tighter bg-gradient-to-b from-black to-black/50 dark:from-white dark:to-white/70 bg-clip-text text-transparent max-md:text-3xl max-md:text-center">
           How it works ?

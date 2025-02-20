@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function FinalCTA() {
   return (
-    <section className="flex flex-col items-center justify-center px-10 pb-36 rounded-xl max-md:mt-8 max-md:p-0 max-md:px-6 w-full max-md:mb-10">
+    <section className="flex flex-col items-center justify-center px-10 pb-36 rounded-xl max-md:mt-8 max-md:p-0 max-md:px-6 w-full max-md:mb-20">
       <h4 className="text-zinc-400 font-semibold text-sm uppercase tracking-wide">
         Let’s Get Started!
       </h4>
