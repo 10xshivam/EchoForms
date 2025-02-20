@@ -2,11 +2,11 @@ import React from "react";
 import { HoverBorderGradient } from "../ui/hover-border-gradient";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import Link from "next/link";
-import GithubBtn from "../ui/github-btn";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className="flex flex-col justify-center items-center gap-5 pb-80 max-md:gap-2 max-md:pb-36">
+    <div className="flex flex-col justify-center items-center gap-5 pb-36 max-md:gap-2">
       <button className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block max-md:mb-2">
         <span className="absolute inset-0 overflow-hidden rounded-full">
           <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -51,9 +51,20 @@ export default function Hero() {
           <span>How it works ?</span>
         </HoverBorderGradient>
       </div>
-      <div className="mt-52">
+      <div className="md:mt-44 max-md:mt-52">
 
-      <GithubBtn/>
+      <Link
+          href="https://www.producthunt.com/posts/echoforms?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-echoforms"
+          target="_blank"
+          >
+          <Image
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=899573&theme=dark&t=1740053069294"
+            alt="EchoForms - Generate&#0032;Forms&#0032;Instantly&#0046;&#0032;No&#0032;Code&#0046;&#0032;Just&#0032;Magic&#0046; | Product Hunt"
+            className="w-[250px] h-[54px] max-md:w-[200px] "
+            width="250"
+            height="54"
+          />
+        </Link>
       </div>
     </div>
   );
