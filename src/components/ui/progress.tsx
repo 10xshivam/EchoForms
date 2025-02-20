@@ -11,7 +11,7 @@ const Progress: React.FC<ProgressProps> = ({ value }) => {
   const strokeDashoffset = strokeDasharray - (value / 100) * strokeDasharray;
 
   return (
-    <div className="relative size-40 flex items-center justify-center">
+    <div className="relative size-40 flex items-center justify-center max-md:size-24">
       <svg
         className="size-full rotate-180"
         viewBox="0 0 36 36"
@@ -42,7 +42,7 @@ const Progress: React.FC<ProgressProps> = ({ value }) => {
       </svg>
       {/* Center Text */}
       <div className="absolute text-center">
-        <span className="text-2xl font-bold text-blue-600 dark:text-blue-500">
+        <span className="text-2xl font-bold text-blue-600 dark:text-blue-500 max-md:text-sm">
           {value}%
         </span>
         <span className="text-xs text-gray-600 dark:text-gray-400 block">

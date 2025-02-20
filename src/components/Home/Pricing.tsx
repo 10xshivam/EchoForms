@@ -8,29 +8,35 @@ import axios from "axios";
 import UpgradePlan from "../UpgradePlan";
 import { useUser } from "@clerk/nextjs";
 
+interface usageInterface {
+  createdForms: number;
+  totalSubmissions: number;
+  plan: string;
+}
+
 export default function Pricing() {
   const router = useRouter();
   const { isSignedIn } = useUser(); 
-  const [usage, setUsage] = useState({
-    createdForms: 0,
-    totalSubmissions: 0,
-    plan: "Basic",
-  });
+  const { user } = useUser();
+  const [usage, setUsage] = useState<usageInterface | null>(null);
 
   useEffect(() => {
     async function fetchUsage() {
       try {
+        if (!user) return; 
         const res = await axios.get(`/api/getUsage`);
         const data = await res.data;
         setUsage(data);
       } catch (error) {
         console.error("Error fetching usage data:", error);
+        setUsage(null); 
       }
     }
-    fetchUsage();
-  }, []);
 
-  const subscriptionStatus = usage.plan;
+    fetchUsage();
+  }, [user]);
+
+  const subscriptionStatus = usage?.plan;
 
   const handleButtonClick = (action: string) => {
     if (action === "redirect") {

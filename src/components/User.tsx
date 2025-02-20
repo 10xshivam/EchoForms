@@ -16,22 +16,33 @@ import UpgradePlan from "./UpgradePlan";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+interface UserInterface{
+  createdForms: number;
+  totalSubmissions: number;
+  plan: string;
+}
+
 export default function User() {
   const { user } = useUser();
   const { signOut } = useClerk();
-  const [usage, setUsage] = useState({
-      createdForms: 0,
-      totalSubmissions: 0,
-      plan: "Basic",
-    })
+  const [usage, setUsage] = useState<UserInterface | null>();
+
   useEffect(() => {
     async function fetchUsage() {
-      const res = await axios.get(`/api/getUsage`);
-      const data = await res.data;
-      setUsage(data);
+      try {
+        if (!user) return; 
+        const res = await axios.get(`/api/getUsage`);
+        const data = await res.data;
+        setUsage(data);
+      } catch (error) {
+        console.error("Error fetching usage data:", error);
+        setUsage(null); 
+      }
     }
+
     fetchUsage();
-  }, []);
+  }, [user]);
+
   if (!user) {
     return null;
   }
@@ -62,7 +73,7 @@ export default function User() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          {usage.plan === "Basic" ?
+          {usage?.plan === "Basic" ?
           <UpgradePlan/>:
           <Button className="w-full">Pro Plan</Button>
           }

@@ -27,7 +27,7 @@ export default function EmailNotificationToggle({ formId,enable }:EmailNotificat
   };
 
   return (
-    <div className="flex items-center border rounded-md pr-2 pl-3 gap-x-2 bg-black/50">
+    <div className="flex items-center border rounded-md pr-2 pl-3 gap-x-2 bg-black/50 max-md:p-2">
       {enabled !== null && (
         <Checkbox checked={enabled} onCheckedChange={toggleNotification} />
       )}
