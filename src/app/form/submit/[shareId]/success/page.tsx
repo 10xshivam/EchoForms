@@ -14,7 +14,7 @@ import { useParams } from "next/navigation";
 export default function FormSubmissionSuccess() {
   const { shareId } = useParams()
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen px-5 max-md:min-h-svh">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CheckCircle2 className="mx-auto h-16 w-16 text-green-500 mb-2" />
