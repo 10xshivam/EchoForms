@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
-import { ChartColumn, Share2, SquarePen, Zap } from "lucide-react";
+import { ChartColumn, QrCode, SquarePen, Zap } from "lucide-react";
 
 export default function HowItWorks({ className }: { className?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ export default function HowItWorks({ className }: { className?: string }) {
       step: 1,
       title: "Describe Your Form",
       description:
-        "Simply type what kind of form you need—whether it's a survey, registration form, or feedback form. EchoForms understands your needs instantly.",
+        "Simply type what kind of form you need—whether it's a survey, registration form, or feedback form. EchoForms instantly understands your needs.",
       icon: <SquarePen />,
       ref: div2Ref,
     },
@@ -27,27 +27,28 @@ export default function HowItWorks({ className }: { className?: string }) {
       step: 2,
       title: "AI Generates It",
       description:
-        "Our powerful AI builds a fully functional form in seconds, structured exactly as you described—no coding, no drag-and-drop required.",
+        "Our powerful AI builds a fully functional form in seconds, structured exactly as you described—no coding or drag-and-drop required.",
       icon: <Zap />,
       ref: div3Ref,
     },
     {
       step: 3,
-      title: "Share & Embed",
+      title: "Get a Shareable QR Code",
       description:
-        "Get a shareable link or embed it anywhere—your website, Notion, or any platform. Start collecting responses instantly.",
-      icon: <Share2 />,
+        "Every form gets a unique link and a QR code, making it easier to share and collect responses anywhere.",
+      icon: <QrCode />,
       ref: div4Ref,
     },
     {
       step: 4,
       title: "Analyze Responses",
       description:
-        "View and manage responses in real time with our intuitive dashboard. Export data or integrate with Notion, Zapier, and Google Sheets.",
+        "Track submissions in real time with our clean dashboard. Export data as CSV for reporting and analysis.",
       icon: <ChartColumn />,
       ref: div5Ref,
     },
   ];
+  
   return (
     <div
       className={cn(

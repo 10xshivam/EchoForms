@@ -1,6 +1,6 @@
 import {
+  Bell,
   Bot,
-  Cable,
   ChartSpline,
   FileDown,
   QrCode,
@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import React from "react";
 
-const features = [
+export const features = [
   {
     title: "AI-Powered Form Generation",
     description:
@@ -18,32 +18,32 @@ const features = [
   {
     title: "Customize Your Forms",
     description:
-      "Customize fields, apply validations, and design visually appealing forms with a seamless user experience.",
+      "Modify fields, apply validations, and adjust form settings effortlessly with an intuitive UI.",
     icon: <Sparkles size={30} />,
   },
   {
-    title: "Instant Sharing & Embedding",
+    title: "Generate & Share QR Codes",
     description:
-      "Get a unique shareable link or QR code upon creation. Easily embed forms on your website with a simple copy-paste.",
+      "Get a unique shareable link or QR code for every form, making it easy to distribute and collect responses.",
     icon: <QrCode size={35} />,
   },
   {
     title: "Real-Time Response Tracking",
     description:
-      "Monitor submissions as they happen with detailed analytics. Receive instant email notifications for every new response.",
+      "Monitor submissions as they happen with detailed analytics, ensuring you stay updated on user responses.",
     icon: <ChartSpline size={35} />,
+  },
+  {
+    title: "Instant Email Alerts",
+    description:
+      "Enable email notifications to receive alerts whenever someone submits a response to your form.",
+    icon: <Bell size={35} />,
   },
   {
     title: "Seamless Data Export",
     description:
-      "Download all responses in CSV format for easy reporting and analysis. Manage submissions efficiently in one place.",
+      "Download all submissions in CSV format for easy reporting and analysis. Manage your data efficiently.",
     icon: <FileDown size={35} />,
-  },
-  {
-    title: "Seamless Integrations",
-    description:
-      "Connect with Notion, Zapier, Google Sheets, and other tools for automated workflows.",
-    icon: <Cable size={35} />,
   },
 ];
 
