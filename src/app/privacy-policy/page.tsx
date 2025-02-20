@@ -11,19 +11,19 @@ import Footer from "@/components/Footer";
 
 export default function PrivacyPolicy() {
   return (
-    <div className="relative w-full min-h-screen flex flex-col items-center pt-40">
+    <div className="relative w-full min-h-screen flex flex-col items-center pt-40  max-md:pt-28 max-md:pb-0">
       <Navbar />
-      <div className="w-full justify-center items-center mb-10 flex flex-col">
-        <h3 className="text-5xl text-center font-bold tracking-tight bg-gradient-to-b from-black to-black/50  dark:from-white dark:to-white/50 bg-clip-text text-transparent py-1">
-          Privacy Policy for EchoForms
+      <div className="w-full justify-center items-center mb-10 flex flex-col max-md:px-5">
+        <h3 className="text-5xl text-center font-bold tracking-tight bg-gradient-to-b from-black to-black/50  dark:from-white dark:to-white/50 bg-clip-text text-transparent py-1 max-md:text-3xl">
+          Privacy Policy 
         </h3>
-        <p className="text-zinc-500 text-base text-center mt-4 tracking-tight max-w-2xl">
+        <p className="text-zinc-500 text-base text-center mt-4 tracking-tight max-w-2xl max-md:text-sm max-md:mt-2">
           At EchoForms, we are committed to protecting your privacy. This
           Privacy Policy explains how we collect, use, and safeguard your
           information when you use our services.
         </p>
       </div>
-      <div className="border w-full max-w-[800px] p-10 flex-col gap-8 flex mb-28">
+      <div className="border w-full max-w-[800px] p-10 flex-col gap-8 flex mb-28 max-md:p-0 max-md:border-none max-md:mb-10 max-md:px-5">
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
             <AccordionTrigger className="text-base font-semibold">

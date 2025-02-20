@@ -25,7 +25,7 @@ export default function Hero() {
         need, and EchoForms will create it in seconds.
       </p>
       <div className="flex gap-4 max-md:mt-1.5">
-        <Link href={"/sign-up"}>
+        <Link href={"/dashboard"}>
           <button className="group bg-zinc-800 hover:bg-zinc-900 text-white h-11 rounded-lg text-md px-5 font-medium max-md:h-9 max-md:px-3 max-md:text-sm">
             Try it now !
             <ArrowUpRight
