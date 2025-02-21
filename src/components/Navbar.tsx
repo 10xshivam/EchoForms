@@ -26,7 +26,7 @@ export default function Navbar() {
               </Button>
             </Link>
             <Link
-              href={"https://github.com/shivam-tsx/Safe-Report"}
+              href={"https://github.com/10xshivam/EchoForms"}
               className="text-black/60 dark:text-white/70 hover:text-black dark:hover:text-white max-md:hidden"
             >
               <Github  />
@@ -36,10 +36,10 @@ export default function Navbar() {
         ) : (
           <>
             <Link href="/">
-                <Home/> 
+                <Home className="text-black/60 dark:text-white/70 hover:text-black dark:hover:text-white"/> 
             </Link>
             <Link href="/dashboard">
-            <LayoutDashboard className="md:hidden mx-2"/>
+            <LayoutDashboard className="md:hidden mx-2 text-black/60 dark:text-white/70 hover:text-black dark:hover:text-white"/>
               <Button className="bg-transparent border hover:border-none  dark:border-zinc-100/10 hover:bg-zinc-800/10  dark:hover:bg-zinc-800 text-black dark:text-white text-sm max-md:hidden">
                 <LayoutDashboard />
                 Dashboard
