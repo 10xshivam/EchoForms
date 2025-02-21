@@ -1,8 +1,7 @@
-import { GoogleGenerativeAI } from "@google/generative-ai"
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const prompt = `
 Generate a valid JSON response without formatting it as a code block. Do not include json or triple backticks. Return raw JSON only.
-
 
 {
   "formTitle": "string",
@@ -26,6 +25,9 @@ Requirements:
 - "options" must be included only for "select", "radio", and "checkbox" fields.
 - Ensure consistency in "fieldName" for reliable frontend rendering.
 - Provide meaningful "placeholder" text based on the "fieldTitle".
+- Generate a "file" field only if strictly necessary (e.g., for profile picture or document upload).
+- Prefer simple input fields over complex ones to reduce database storage usage.
+- Avoid unnecessary multi-option fields unless they are critical for the form's purpose.
 - Return only valid JSON, without any additional text.
 
 Example Output:
@@ -59,11 +61,15 @@ Example Output:
 }
 `;
 
-
 export async function generateAIContent(description: string) {
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    const result = await model.generateContent(`${description} ${prompt}`);
-    return result.response.text();
+  const result = await model.generateContent(`${description} ${prompt}`);
+  
+  const cleanedResponse = result.response
+    .text()
+    .replace(/```json|```/g, "")
+    .trim();
+  return JSON.parse(cleanedResponse);
 }
