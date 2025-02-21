@@ -67,6 +67,9 @@ export default function UpgradePlan() {
       order_id: data.order.id,
       handler: async function (response: Record<string, unknown>) {
         console.log("Payment Success:", response);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       },
       notes: { userId },
       theme: { color: "#18181B" },
