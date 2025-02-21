@@ -44,12 +44,18 @@ export const pricingPlans = [
   {
     name: "Basic",
     price: "₹0",
-    description: "Suits best for hobby use or small projects.",
+    description: "Best for hobby projects and small-scale use.",
     features: [
-      "5 Forms",
+      "Create up to 5 forms",
       "100 submissions per form",
-      "No Email notifications",
       "Basic analytics",
+      "No Email notifications",
+      "Limited File uploads",
+      "Submission export",
+      "Thank You Page",
+      "No Dedicated account manager",
+      "Email Support",
+      "No Auto Responses"
     ],
     buttonText: "Get Started",
     action: "redirect",
@@ -58,14 +64,18 @@ export const pricingPlans = [
   {
     name: "Pro",
     price: "₹499",
-    description: "Collect more submissions, access most of the features.",
+    description: "Ideal for professionals and growing businesses.",
     features: [
-      "50 Forms",
+      "Create up to 50 forms",
       "1,000 submissions per form",
-      "Email notifications",
-      "File Uploads (5GB)",
       "Detailed analytics & insights",
-      "Submissions export",
+      "Email notifications",
+      "File uploads upto 5GB",
+      "Submission export",
+      "Thank You Page",
+      "No Dedicated account manager",
+      "Email Support",
+      "No Auto Responses"
     ],
     buttonText: "Upgrade to Pro",
     action: "upgrade",
@@ -73,25 +83,26 @@ export const pricingPlans = [
   },
   {
     name: "Enterprise",
-    price: "Custom Price",
-    description: "Empower your business with advanced tools and automation.",
+    price: "Custom Pricing",
+    description: "Advanced tools and automation for enterprises.",
     features: [
-      "Unlimited Forms",
+      "Unlimited forms",
       "20,000 submissions per form",
-      "Email notifications",
-      "File Uploads (50GB)",
-      "Detailed analytics & insights",
-      "Submissions export",
+      "Advanced analytics & insights",
+      "Customized Email notifications",
+      "File uploads upto 50GB",
+      "Submission export",
       "Custom Thank You Page",
       "Dedicated account manager",
       "24/7 priority support",
-      "Auto Responses"
+      "Auto responses"
     ],
     buttonText: "Contact Sales",
     action: "coming-soon",
     highlight: true,
   },
 ];
+
 
 
 export const termsAndConditionsData = [
